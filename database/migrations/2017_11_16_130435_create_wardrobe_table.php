@@ -18,6 +18,7 @@ class CreateWardrobeTable extends Migration {
 			$table->string('name', 32);
 			$table->bigInteger('creator_id')->unsigned()->index('creator_id_2');
 			$table->timestamp('creation_time')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
 		});
 	}
 

@@ -17,6 +17,7 @@ class CreateCitiesTable extends Migration {
 			$table->bigInteger('id', true)->unsigned();
 			$table->string('name', 64);
 			$table->bigInteger('country_id')->unsigned()->index('country_id');
+            $table->timestamps();
 		});
 	}
 

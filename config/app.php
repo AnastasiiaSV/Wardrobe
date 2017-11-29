@@ -171,6 +171,10 @@ return [
         /*
          * Application Service Providers...
          */
+
+        Collective\Html\HtmlServiceProvider::class,
+
+
         Wardrobe\Providers\AppServiceProvider::class,
         Wardrobe\Providers\AuthServiceProvider::class,
         // Wardrobe\Providers\BroadcastServiceProvider::class,

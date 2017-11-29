@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration {
 			$table->bigInteger('city_id')->unsigned()->index('city_id');
 			$table->boolean('is_block')->default(0);
 			$table->boolean('is_admin')->default(0);
+            $table->timestamps();
 		});
 	}
 

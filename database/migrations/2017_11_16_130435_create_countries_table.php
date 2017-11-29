@@ -16,6 +16,7 @@ class CreateCountriesTable extends Migration {
 		{
 			$table->bigInteger('id', true)->unsigned();
 			$table->string('name', 64);
+            $table->timestamps();
 		});
 	}
 

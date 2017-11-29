@@ -19,6 +19,7 @@ class CreateOutfitsTable extends Migration {
 			$table->timestamp('time_of_creation')->default(DB::raw('CURRENT_TIMESTAMP'));
 			$table->bigInteger('creator_id')->unsigned()->index('creator_id');
 			$table->text('declaration');
+            $table->timestamps();
 		});
 	}
 

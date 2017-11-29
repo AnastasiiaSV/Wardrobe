@@ -20,6 +20,7 @@ class CreateItemsTable extends Migration {
 			$table->string('path', 256);
 			$table->bigInteger('creator_id')->unsigned()->index('user_seller_id');
 			$table->timestamp('time_of_creation')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
 		});
 	}
 
