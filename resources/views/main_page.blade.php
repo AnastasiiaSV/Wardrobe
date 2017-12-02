@@ -6,10 +6,10 @@
     <div class="page">
         <div class="login_form">
 
-            {!! Form::open(['action' => ['MainController@gotoAccountPage']]);!!}
+            {!! Form::open(['action' => ['LoginController@gotoLoginPage']]);!!}
 
             <div class="field-wrap button button-block" >
-                {!! Form::submit('ACCOUNT') ; !!}
+                {!! Form::submit('LOGIN') ; !!}
             </div>
 
             {!! Form::close() !!}

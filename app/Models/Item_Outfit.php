@@ -12,4 +12,5 @@ class Item_Outfit extends Model
             'item_id',
             'outfit_id'
         ];
+    public $timestamps = false;
 }

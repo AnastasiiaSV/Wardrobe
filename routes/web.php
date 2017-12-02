@@ -38,7 +38,6 @@ Route::any('/wardrobe',['uses' => 'WardrobeController@index', 'as' => 'wardrobe'
 
 Route::any('/', 'MainController@index');
 
-Route::post('/account', 'MainController@gotoAccountPage');
 Route::post('/posts', 'MainController@gotoPostsPage');
 
 Route::any('/wardrobe', 'WardrobeController@index');
@@ -55,3 +54,17 @@ Route::any('/account', 'AccountController@index');
 Route::post('/account/wardrobes', 'AccountController@showWardrobes');
 Route::post('/wardrobe', 'AccountController@gotoWardrobe');
 
+
+
+////////////////////////////////////////////////////
+
+
+// route to show the login form
+Route::any('/login',  'LoginController@gotoLoginPage');
+Route::any('/login/account',  'LoginController@doLogin');
+
+Route::any('/signup',  'LoginController@gotoSignUpPage');
+Route::any('/signup/account',  'LoginController@doSignUp');
+
+// route to process the form
+//Route::post('/login', array('uses' => 'LoginController@doLogin'));

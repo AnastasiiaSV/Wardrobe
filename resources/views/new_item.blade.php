@@ -7,7 +7,8 @@
         <div class="login_form">
                 {!! Form::open(array('action' => ['ItemController@createItem'],'files'=>'true'));!!}
 
-                {!! Form::hidden('creator_id', $creator_id); !!}
+            {!! Form::hidden('creator_id', $vars[1]); !!}
+            {!! Form::hidden('wardrobe_id', $vars[0]->id); !!}
 
             <div class="field-wrap">
                 {!! Form::text('name', 'Name of new element'); !!}
@@ -31,7 +32,7 @@
                  * сделать что бы типы отображались в зависимости от выбранной категории
                  */
 
-                $types = \Wardrobe\Http\Controllers\MainController::getCategoryTypesList(1);
+                $types = \Wardrobe\Http\Controllers\MainController::getCategoryTypesList(2);
                 //var_dump($types);
                 ?>
                 {!! Form::select('type_id', $types); !!}

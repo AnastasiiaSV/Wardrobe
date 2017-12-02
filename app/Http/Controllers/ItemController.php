@@ -4,6 +4,7 @@ namespace Wardrobe\Http\Controllers;
 use Illuminate\Http\Request;
 use Wardrobe\Models\Category;
 use Wardrobe\Models\Item;
+use Wardrobe\Models\Wardrobe_Item;
 
 class ItemController extends Controller
 {
@@ -47,6 +48,13 @@ class ItemController extends Controller
                 'creator_id' => $creator_id,
             ]);
 
-            return view('item');
+        $wardrobe_id = $request->input('wardrobe_id');
+
+        $wardrobe_item = Wardrobe_Item::create([
+            'wardrobe_id' =>$wardrobe_id,
+            'item_id' => $item->id,
+        ]);
+
+        return view('item',['item_id' => $item->id]);
     }
 }

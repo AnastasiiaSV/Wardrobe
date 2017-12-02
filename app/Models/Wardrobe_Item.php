@@ -12,4 +12,5 @@ class Wardrobe_Item extends Model
             'wardrobe_id',
             'item_id'
         ];
+    public $timestamps = false;
 }

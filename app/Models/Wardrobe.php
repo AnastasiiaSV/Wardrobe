@@ -12,4 +12,5 @@ class Wardrobe extends Model
             'name',
             'creator_id'
         ];
+    public $timestamps = false;
 }

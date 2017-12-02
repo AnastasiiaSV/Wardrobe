@@ -35,22 +35,21 @@ class OutfitController extends Controller
                 'declaration' => $declaration,
             ]);
 
+        $outfit_id = $outfit->id;
+
         //adding items and outfits matching in db
         //i.e. add items to current outfit
+        $items_arr = $request->input('check-items');
 
-        /**
-         * todo
-         */
-        $items_arr = array();
+        foreach ($items_arr as $item_in_outfit) {
+            var_dump( $item_in_outfit);
 
-        foreach ($items_arr as $item) {
-            $items_in_outfit = Item_Outfit::create([
-                'item_id' => $creator_id,
-                'creator_id' => $declaration,
+            $item_outfit = Item_Outfit::create([
+                'item_id' => $item_in_outfit,
+                'outfit_id' => $outfit_id,
             ]);
         }
 
-
-            return view('item');
+        return view('outfit', ['outfit_id' => $outfit_id]);
     }
 }

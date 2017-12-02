@@ -14,10 +14,6 @@ class MainController extends Controller
         return view('main_page');
     }
 
-    public  function gotoAccountPage(Request $request){
-        return view('account');
-    }
-
     public  function gotoPostsPage(Request $request){
         return view('posts');
     }

@@ -14,9 +14,16 @@ class WardrobeController extends Controller
 
     public  function gotoNewItemPage(Request $request){
         /**
-         * todo creator_id
+         * todo creator_id, wardrobe_id
          */
-        return view('new_item',['creator_id' => 1]);
+        //получить и найти гардероб для использования на странице создания образа
+
+        $wardrobe_id = $request->input('wardrobe_id');
+        $found_wardrobe = Wardrobe::find($wardrobe_id);
+
+        $creator_id=1;
+
+        return view('new_item', ['vars' =>  [$found_wardrobe, $creator_id]]);
     }
 
     public  function gotoOutfitPage(Request $request){
@@ -29,7 +36,7 @@ class WardrobeController extends Controller
          */
         $creator_id=1;
 
-        return view('outfit', ['vars' =>  [$found_wardrobe, $creator_id]]);
+        return view('new_outfit', ['vars' =>  [$found_wardrobe, $creator_id]]);
     }
 
     public static function wardrobeTypeItems($wardrobe, $category_id){

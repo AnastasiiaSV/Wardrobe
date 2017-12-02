@@ -6,18 +6,17 @@
 
         {!! Form::open(['action' => ['WardrobeController@gotoOutfitPage']]);!!}
             {!! Form::hidden('wardrobe_id', $wardrobe->id); !!}
-        <div class="button-block" >
+        <div class="field-wrap button button-block" >
             {!! Form::submit('CREATE OUTFIT') ; !!}
         </div>
         {!! Form::close() !!}
 
-
         {!! Form::open(['action' => ['WardrobeController@gotoNewItemPage']]);!!}
-        <div class="button-block" >
+            {!! Form::hidden('wardrobe_id', $wardrobe->id); !!}
+        <div class="field-wrap button button-block" >
             {!! Form::submit('NEW ITEM') ; !!}
         </div>
         {!! Form::close() !!}
-
 
         @foreach (\Wardrobe\Http\Controllers\MainController::getCategories() as $category)
                 <h1>{{$category->name}}</h1>

@@ -14,5 +14,5 @@ class Type extends Model
             'category_id'
         ];
 
-   // public $timestamps = false;
+   public $timestamps = false;
 }

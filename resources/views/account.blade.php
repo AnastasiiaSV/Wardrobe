@@ -12,11 +12,9 @@
               <div class="tab-content">
 
                   <div id="login">
-
                       {!! Form::open(['action' => ['AccountController@gotoWardrobe']]);!!}
                       {!! Form::submit('LOGIN') ; !!}
                       {!! Form::close() !!}
-
                   </div>
 
                   <!--Блок д. регистрации-->

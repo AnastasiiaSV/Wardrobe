@@ -23,5 +23,5 @@ class User extends Model
         ];
 
    // public $timestamps = false;
-
+    public $timestamps = false;
 }
