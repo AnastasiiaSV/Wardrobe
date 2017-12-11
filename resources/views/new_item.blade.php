@@ -47,6 +47,15 @@
             </div>
 
             <div class="field-wrap">
+                {!! Form::label('label_places', 'Storage place');!!}
+                <?php
+                $places = \Wardrobe\Http\Controllers\MainController::getPlacesList();
+                ?>
+                {!! Form::select('place_id', $places); !!}
+            </div>
+
+
+            <div class="field-wrap">
                 {!! Form::file('file',['class' => 'form-control'])!!}
             </div>
 

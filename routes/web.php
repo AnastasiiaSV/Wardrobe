@@ -1,28 +1,7 @@
 <?php
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
-Route::any('/', function () {
-    return view('welcome');
-});
-*/
-
-
+use Wardrobe\Models\Wardrobe;
+use Wardrobe\Models\Outfit;
+use Wardrobe\Models\Item;
 /*
 Route::any('/',['uses' => 'HomeController@index', 'as' => 'home']);
 
@@ -34,37 +13,72 @@ Route::any('/wardrobe',['uses' => 'WardrobeController@index', 'as' => 'wardrobe'
 */
 
 //////////////////////
-///
+Route::view('/main_page', 'main_page');
+Route::view('/login', 'login');
+
+///////////
 
 Route::any('/', 'MainController@index');
 
 Route::post('/posts', 'MainController@gotoPostsPage');
 
-Route::any('/wardrobe', 'WardrobeController@index');
+Route::any('/new_wardrobe', 'WardrobeController@gotoNewWardrobePage');
+Route::any('/create_wardrobe', 'WardrobeController@createWardrobe');
 Route::post('/new_item', 'WardrobeController@gotoNewItemPage');
-Route::post('/outfit', 'WardrobeController@gotoOutfitPage');
+Route::post('/outfit', 'WardrobeController@gotoNewOutfitPage');
 
 Route::any('/new_item/ok', 'ItemController@createItem');
+Route::any('/item', 'ItemController@editItem');
 
 Route::any('/new_outfit', 'OutfitController@createOutfit');
-
+Route::any('/outfit/changed', 'OutfitController@editOutfitDeclaration');
+Route::any('/outfit/items_removed', 'OutfitController@deleteItemsFromOutfit');
+Route::any('/outfit/items_added', 'OutfitController@addItemsToOutfit');
 
 Route::any('/account', 'AccountController@index');
 
 Route::post('/account/wardrobes', 'AccountController@showWardrobes');
 Route::post('/wardrobe', 'AccountController@gotoWardrobe');
 
+//go to particular wardrobe page
+Route::get('/wardrobe/{id}', function ($id) {
+    $wardrobe = Wardrobe::find($id);
+    return view('wardrobe',['wardrobe' => $wardrobe]);
+});
 
+//go to particular outfit page
+Route::get('/outfit/{i_id}', function ($i_id) {
+    $outfit = Outfit::find($i_id);
+    return view('outfit', ['vars' =>  [$outfit]]);
+});
+
+//go to particular outfit page
+Route::get('/edit_outfit/{i_id}', function ($i_id) {
+    $outfit = Outfit::find($i_id);
+    return view('edit_outfit', ['vars' =>  [$outfit]]);
+});
+
+
+//go to particular item page
+Route::get('/item/{id}', function ($id) {
+    $item = Item::find($id);
+    return view('item',['item' => $item]);
+});
+
+//go to particular item page
+Route::get('/edit_item/{id}', function ($id) {
+    $item = Item::find($id);
+    return view('edit_item',['item' => $item]);
+});
 
 ////////////////////////////////////////////////////
-
 
 // route to show the login form
 Route::any('/login',  'LoginController@gotoLoginPage');
 Route::any('/login/account',  'LoginController@doLogin');
+Route::any('/login/account/login',  'LoginController@doLogout');
 
 Route::any('/signup',  'LoginController@gotoSignUpPage');
-Route::any('/signup/account',  'LoginController@doSignUp');
+Route::any('/new_account', 'LoginController@doSignUp');
 
-// route to process the form
-//Route::post('/login', array('uses' => 'LoginController@doLogin'));
+

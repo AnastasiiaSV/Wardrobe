@@ -14,5 +14,5 @@ class City extends Model
             'country_id',
         ];
 
-   // public $timestamps = false;
+    public $timestamps = false;
 }

@@ -3,28 +3,33 @@
 
 @section('content')
 
-    <div class="page">
-        <div class="login_form">
+    <div class="long_page">
 
+        <div class="button_form">
             {!! Form::open(['action' => ['LoginController@gotoLoginPage']]);!!}
-
             <div class="field-wrap button button-block" >
-                {!! Form::submit('LOGIN') ; !!}
+                {!! Form::submit('LETS START') ; !!}
             </div>
-
             {!! Form::close() !!}
+        </div>
 
+            <?php
+            $itemsArr = \Wardrobe\Http\Controllers\MainController::getLatestItems();
+            ?>
 
-            {!! Form::open(['action' => ['MainController@gotoPostsPage']]);!!}
+            <div class="items_container_main_large">
 
-            <div class="field-wrap button button-block" >
-                {!! Form::submit('POSTS') ; !!}
+                <?php if($itemsArr): ?>
+                <?php foreach($itemsArr as $item): ?>
+                <div class="item_container_main_single">
+                    <img src = "{{$item->path}}" alt = "{{$item->name}}">
+                </div>
+
+                <?php endforeach; ?>
+                <?php endif; ?>
+
             </div>
-
-            {!! Form::close() !!}
-
 
         </div>
-    </div>
 
 @stop
