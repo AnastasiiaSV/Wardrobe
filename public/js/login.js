@@ -1,5 +1,7 @@
 $('.form').find('input, textarea').on('keyup blur focus', function (e) {
 
+    getElementById('#companyIdHidden').value = value;
+
   var $this = $(this),
       label = $this.prev('label');
 

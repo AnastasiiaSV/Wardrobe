@@ -28,11 +28,9 @@
 
         @foreach (\Wardrobe\Http\Controllers\MainController::getCategories() as $category)
 
-            <!--
-            todo
-            -->
-                <br>
-                <h1 style="display: block">{{$category->name}}</h1>
+            <div class="item_name_container">
+                <h1 >{{$category->name}}</h1>
+            </div>
 
             @if (isset($wardrobe))
                 <div class="items_container_main_large">

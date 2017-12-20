@@ -53,6 +53,12 @@ class MainController extends Controller
         return $items ;
     }
 
+    public static function getCategoryTypes($category_id){
+        // $types_arr = Type::all();
+        $types_arr = Type::where('category_id',$category_id)->get();
+        // $types_arr = [''=>''] + Type:: pluck('name', 'id', 'category_id')->all();
+        return $types_arr ;
+    }
 
     public static function getCategoryTypesList($category_id){
         // $types_arr = Type::all();
@@ -82,9 +88,7 @@ class MainController extends Controller
         return $places_arr ;
     }
 
-    /*
-     * todo
-     */
+
     public static function getUserPlacesList(){
         $places_arr = Place:: pluck('name', 'id')->all();
         return $places_arr ;

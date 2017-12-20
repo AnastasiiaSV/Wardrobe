@@ -15,7 +15,7 @@ Route::any('/wardrobe',['uses' => 'WardrobeController@index', 'as' => 'wardrobe'
 //////////////////////
 Route::view('/main_page', 'main_page');
 Route::view('/login', 'login');
-
+Route::view('/contacts', 'contacts');
 ///////////
 
 Route::any('/', 'MainController@index');
@@ -29,8 +29,10 @@ Route::post('/outfit', 'WardrobeController@gotoNewOutfitPage');
 
 Route::any('/new_item/ok', 'ItemController@createItem');
 Route::any('/item', 'ItemController@editItem');
+Route::any('/item_deleted', 'ItemController@deleteItem');
 
 Route::any('/new_outfit', 'OutfitController@createOutfit');
+Route::any('/outfit_deleted', 'OutfitController@deleteOutfit');
 Route::any('/outfit/changed', 'OutfitController@editOutfitDeclaration');
 Route::any('/outfit/items_removed', 'OutfitController@deleteItemsFromOutfit');
 Route::any('/outfit/items_added', 'OutfitController@addItemsToOutfit');
@@ -80,5 +82,39 @@ Route::any('/login/account/login',  'LoginController@doLogout');
 
 Route::any('/signup',  'LoginController@gotoSignUpPage');
 Route::any('/new_account', 'LoginController@doSignUp');
+
+
+
+
+
+
+
+//Settings: show form to create settings
+Route::get( '/settings/new', array(
+    'as' => 'settings.new',
+    'uses' => 'SettingsController@add'
+) );
+
+//Settings: create a new setting
+Route::post( '/settings', array(
+    'as' => 'settings.create',
+    'uses' => 'SettingsController@create'
+) );
+
+
+
+
+Route::get('ajax',function(){
+    return view('ajax');
+});
+Route::post('/ajax','AjaxController@index');
+
+
+
+
+
+
+
+
 
 

@@ -3,7 +3,6 @@
   @section('content')
 
       <div class="long_page">
-
               <!-- user's wardrobes -->
               <h2>User's wardrobes</h2>
               <?php
@@ -36,7 +35,10 @@
               ?>
               @foreach ($outfits as $outfit)
 
-              <a href="{{ url("outfit/{$outfit->id}") }}">{{$outfit->name}}</a>
+              <div class="item_name_container">
+                  <a href="{{ url("outfit/{$outfit->id}") }}">{{$outfit->name}}</a>
+              </div>
+
 
                       <div class="items_container_main_large">
 

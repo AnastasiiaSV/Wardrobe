@@ -43,7 +43,7 @@ class ItemController extends Controller
 
             $item = Item::create([
                 'name' => $name,
-                'category_id' =>$category_id,
+                'category_id' => $category_id,
                 'type_id' => $type_id,
                 'season_id' => $season_id,
                 'place_id' => $place_id,
@@ -52,15 +52,13 @@ class ItemController extends Controller
                 'wardrobe_id' => $wardrobe_id,
             ]);
 
-
-        $wardrobe_item = Wardrobe_Item::create([
+         $wardrobe_item = Wardrobe_Item::create([
             'wardrobe_id' =>$wardrobe_id,
             'item_id' => $item->id,
         ]);
 
-        return view('item',['item' => $item]);
+        return redirect("/item/$item->id");
     }
-
 
     public function editItem(Request $request)
     {
@@ -88,12 +86,12 @@ class ItemController extends Controller
 
     public function deleteItem(Request $request)
     {
-        $id = $request->input('id');
+        $item_id = $request->input('item_id');
+        $wardrobe_id = $request->input('wardrobe_id');
 
-        $item = Item::where('id', $id)->delete();
+        $item = Item::where('id', $item_id)->delete();
 
-        //$item = Item::find($id);
-
+        return redirect("/account");
         //return view('item',['item' => $item]);
     }
 }

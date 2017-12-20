@@ -5,7 +5,7 @@
     <div class="page">
 
         <div class="login_form">
-                {!! Form::open(array('action' => ['ItemController@createItem'],'files'=>'true'));!!}
+            {!! Form::open(array('action' => ['ItemController@createItem'],'files'=>'true'));!!}
 
             {!! Form::hidden('creator_id', $vars[1]); !!}
             {!! Form::hidden('wardrobe_id', $vars[0]->id); !!}
@@ -23,19 +23,29 @@
             </div>
 
             <div class="field-wrap">
+
                 {!! Form::label('label_type', 'Type');!!}
 
                 <?php
-                /**
-                 * todo
-                 * у каждой категории свои типы
-                 * сделать что бы типы отображались в зависимости от выбранной категории
-                 */
 
-                $types = \Wardrobe\Http\Controllers\MainController::getCategoryTypesList(2);
-                //var_dump($types);
+                $categories = \Wardrobe\Http\Controllers\MainController::getCategories();
+
+                foreach ($categories as $category) {
+                $types = \Wardrobe\Http\Controllers\MainController::getCategoryTypes($category->id);
+
+                foreach ($types as $type) {
+                   $types_arr1[$type->id]  = $type->name;
+                }
+                $types_arr[$category->name] =  $types_arr1;
+                    foreach ($types as $type) {
+                        unset($types_arr1[$type->id]);
+                    }
+                }
+
                 ?>
-                {!! Form::select('type_id', $types); !!}
+                {!! Form::select('type_id', $types_arr); !!}
+
+                {!! Form::label('label_type2', '(choose for given category)');!!}
             </div>
 
             <div class="field-wrap">
@@ -44,6 +54,7 @@
                 $seasons = \Wardrobe\Http\Controllers\MainController::getSeasonsList();
                 ?>
                 {!! Form::select('season_id', $seasons); !!}
+
             </div>
 
             <div class="field-wrap">
@@ -65,6 +76,8 @@
 
             {!! Form::close() !!}
 
+
         </div>
     </div>
+
 @stop

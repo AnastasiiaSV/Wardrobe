@@ -19,7 +19,7 @@
 
                     <div class="field-wrap" >
                         {{ Form::label('email', 'Email Address') }}
-                        {{ Form::text('email', 'ivan@gmail.com') }}
+                        {{Form::text('email', 'ivan@gmail.com') }}
                     </div>
 
                     <div class="field-wrap" >
@@ -92,8 +92,8 @@
                 </p>
 
                 <div class="field-wrap" >
-                    {{ Form::label('email', 'Email Address') }}
-                    {{ Form::text('email', 'ivan@gmail.com') }}
+                      {{ Form::label('email', 'Email Address') }}
+                    <div id = 'email'> {{ Form::text('email', 'as@gmail.com') }} </div>
                 </div>
 
                 <div class="field-wrap" >

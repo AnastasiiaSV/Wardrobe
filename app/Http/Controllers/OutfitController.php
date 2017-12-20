@@ -52,7 +52,8 @@ class OutfitController extends Controller
             ]);
         }
 
-        return view('outfit', ['vars' =>  [$outfit]]);
+        return redirect("/outfit/$outfit->id");
+       // return view('outfit', ['vars' =>  [$outfit]]);
     }
 
 
@@ -90,7 +91,6 @@ class OutfitController extends Controller
         $items_arr = $request->input('check-items');
 
         foreach ($items_arr as $item_in_outfit) {
-
             $item_exists = Item_Outfit::where([
                 'item_id' => $item_in_outfit,
                 'outfit_id' => $outfit_id
@@ -126,5 +126,23 @@ class OutfitController extends Controller
         $outfit = Outfit::find($outfit_id);
         return view('outfit', ['vars' =>  [$outfit]]);
     }
+
+
+    public function deleteOutfit(Request $request)
+    {
+        $outfit_id = $request->input('outfit_id');
+        $wardrobe_id = $request->input('wardrobe_id');
+
+            $item_exists = Item_Outfit::where([
+                'outfit_id' => $outfit_id
+            ])->delete();
+
+        $item = Outfit::where('id', $outfit_id)->delete();
+
+        return redirect("/account");
+        //return redirect("/wardrobe/$wardrobe_id");
+        // return view('outfit', ['vars' =>  [$outfit]]);
+    }
+
 
 }

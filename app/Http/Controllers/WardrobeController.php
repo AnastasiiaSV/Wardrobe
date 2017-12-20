@@ -45,6 +45,7 @@ class WardrobeController extends Controller
             $items_arr = Item::where('items.category_id', '=', $category_id)
                 ->join('wardrobes_items', 'items.id', '=','wardrobes_items.item_id')
                 ->where('wardrobes_items.wardrobe_id', '=', $wardrobe_id)
+                ->select('items.*')
                 ->get();
         }else{
             $items_arr = "";
@@ -65,6 +66,7 @@ class WardrobeController extends Controller
             'creator_id' =>$creator_id,
         ]);
 
-        return view('wardrobe',['wardrobe' => $wardrobe]);
+        return redirect("/wardrobe/$wardrobe->id");
+       // return view('wardrobe',['wardrobe' => $wardrobe]);
     }
 }

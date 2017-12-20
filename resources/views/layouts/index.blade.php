@@ -12,11 +12,26 @@
 	<link rel="icon" href="{!! URL::asset('content/icons/icon.jpg') !!}">
 
 	<link rel="stylesheet" type="text/css" href="{!! URL::asset('css/header_footer2.css') !!}"  >
-	<link rel="stylesheet" href="{{ URL::asset('css/style7.css') }}" >
+	<link rel="stylesheet" href="{{ URL::asset('css/style.css') }}" >
 	<link rel="stylesheet" type="text/css" href="{!! URL::asset('css/items.css') !!}"  >
 
-	<script src="{{ URL::asset('js/items.js') }}"></script>
-	<script src="{{ URL::asset('js/login.js') }}"></script>
+
+	<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+	</script>
+
+	<script>
+        function getMessage(){
+            $.ajax({
+                type:'POST',
+                url:'/getmsg',
+                data:'_token = <?php echo csrf_token() ?>',
+                success:function(data){
+                    $("#msg").html(data.msg);
+                }
+            });
+        }
+	</script>
+
 
 </head>
 
@@ -35,19 +50,19 @@
 					<td class="main_menu_element_7"></td>
 					<td class="main_menu_element_6"> </td>
 					<td class="main_menu_element_5">
-						<a href="{{ url('/login') }}">
+						<a href="{{ url('/login') }}" id = 'a_login'>
 							<img src="{!! URL::asset('content/icons/login_icon.png')!!}" alt="LOGIN">
 						</a>
 					</td>
 					<td class="main_menu_element_4"> </td>
 					<td class="main_menu_element_3">
-						<a href="{{ url('/account') }}">
+						<a href="{{ url('/account') }}" id = 'a_account'>
 							<img src="{!! URL::asset('content/icons/user_icon.png')!!}" alt="ACCOUNT">
 						</a>
 					</td>
 					<td class="main_menu_element_2"> </td>
 					<td class="main_menu_element_1">
-						<a href="{{ url('/main_page') }}">
+						<a href="{{ url('/main_page') }}" id = 'a_main'>
 							<img src="{!! URL::asset('content/icons/lang.png')!!}" alt="MAIN PAGE">
 						</a>
 					</td>
@@ -55,7 +70,7 @@
 					<td class="main_menu_element_3"></td>
 					<td class="main_menu_element_4"> </td>
 					<td class="main_menu_element_5">
-						<a href="{{ url('/main_page') }}">
+						<a href="{{ url('/contacts') }}" >
 							<img src="{!! URL::asset('content/icons/contacts_icon.png')!!}" alt="CONTACTS">
 						</a>
 					</td>
@@ -81,8 +96,7 @@
 		<div class="footer_column">
 			<nav>
 				<ul>
-					<li>
-					</li>
+
 				</ul>
 			</nav>
 		</div>
@@ -113,8 +127,24 @@
 		<div class="footer_column">
 			<nav>
 				<ul>
-					<li> </li>
-					<li> </li>
+					<li>
+						<a href="{{ url('/contacts') }}" >Contacts</a>
+					</li>
+
+					<li>
+						<a href="https://www.facebook.com" target="_blank">
+							<img class="footer_social_icon" src="{!! URL::asset('content/icons/facebook1.png')!!}" alt=" facebook ">
+						</a>
+
+						<a href="https://ru.pinterest.com/" target="_blank">
+							<img class="footer_social_icon" src="{!! URL::asset('content/icons/pinterest.png')!!}" alt=" pinterest ">
+						</a>
+
+						<a href="https://www.instagram.com" target="_blank">
+							<img class="footer_social_icon" src="{!! URL::asset('content/icons/instagram.png')!!}" alt=" instagram ">
+						</a>
+					</li>
+
 				</ul>
 			</nav>
 		</div>
@@ -127,6 +157,14 @@
 		</div>
 		
 	</footer><!--footer-->
+
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="{{ asset('js/item.js') }}"></script>
+	<script src="{{ asset('js/form.js') }}"></script>
+
 
 </body>
 

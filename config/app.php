@@ -181,6 +181,8 @@ return [
         Wardrobe\Providers\EventServiceProvider::class,
         Wardrobe\Providers\RouteServiceProvider::class,
 
+
+        Laravel\Dusk\DuskServiceProvider::class,
     ],
 
     /*
