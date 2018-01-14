@@ -19,6 +19,9 @@ class Kernel extends HttpKernel
         \Wardrobe\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \Wardrobe\Http\Middleware\TrustProxies::class,
+
+        \Wardrobe\Http\Middleware\Locale::class,
+
     ];
 
     /**

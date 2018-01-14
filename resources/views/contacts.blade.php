@@ -9,10 +9,7 @@
         </div>
 
         <div class="item_info_block">
-            <p>To contact with author
-            or to left your feedback
-            please
-            send your mail to our address
+            <p> {{config('constants.contacts_text')}}
             </p>
             <p>anastsamot@gmail.com</p>
         </div>

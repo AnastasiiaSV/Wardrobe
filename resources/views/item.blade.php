@@ -16,20 +16,20 @@
             ?>
 
             <p>
-                Name: {{ "$item->name" }}
+                {{config('constants.not_alive_name')}}: {{ "$item->name" }}
                 <br>
-                Creation: {{ "$item->time_of_creation" }}
+                {{config('constants.creation')}}: {{ "$item->time_of_creation" }}
                 <br>
-                Category: {{ "$category->name" }}
+                {{config('constants.category')}}: {{ "$category->name" }}
                 <br>
-                Season: {{ "$season->name" }}
+                {{config('constants.season')}}: {{ "$season->name" }}
                 <br>
-                Place: {{ "$place->name" }}
+                {{config('constants.storage')}}: {{ "$place->name" }}
             </p>
 
             <hr>
             <p>
-            <a href="{{ url("edit_item/{$item->id}") }}">Press here to edit item</a>
+            <a href="{{ url("edit_item/{$item->id}") }}">{{config('constants.press_to_edit_item')}}</a>
             </p>
 
         </div>

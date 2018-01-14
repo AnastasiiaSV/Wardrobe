@@ -5,6 +5,8 @@ namespace Wardrobe\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
+use Illuminate\Support\Facades\Cookie;
+
 use Wardrobe\Models\Item;
 use Wardrobe\Models\Season;
 use Wardrobe\Models\Category;
@@ -17,7 +19,8 @@ use Wardrobe\Models\Outfit;
 class MainController extends Controller
 {
     public  function index(){
-        return view('main_page');
+        return response(view('main_page'))
+            ->cookie('Lang', 'en', 60);
     }
 
     public  function gotoPostsPage(Request $request){

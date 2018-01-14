@@ -11,27 +11,11 @@
 	<title>WARDROBE</title>
 	<link rel="icon" href="{!! URL::asset('content/icons/icon.jpg') !!}">
 
-	<link rel="stylesheet" type="text/css" href="{!! URL::asset('css/header_footer2.css') !!}"  >
-	<link rel="stylesheet" href="{{ URL::asset('css/style.css') }}" >
+	<link rel="stylesheet" type="text/css" href="{!! URL::asset('css/header_footer4.css') !!}"  >
+	<link rel="stylesheet" href="{{ URL::asset('css/style2.css') }}" >
 	<link rel="stylesheet" type="text/css" href="{!! URL::asset('css/items.css') !!}"  >
 
-
-	<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
-	</script>
-
-	<script>
-        function getMessage(){
-            $.ajax({
-                type:'POST',
-                url:'/getmsg',
-                data:'_token = <?php echo csrf_token() ?>',
-                success:function(data){
-                    $("#msg").html(data.msg);
-                }
-            });
-        }
-	</script>
-
+	<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">	</script>
 
 </head>
 
@@ -47,23 +31,23 @@
 				<tr>
 					<td class="main_menu_element_9"> </td>
 					<td class="main_menu_element_8"> </td>
-					<td class="main_menu_element_7"></td>
+					<td class="main_menu_element_7"> </td>
 					<td class="main_menu_element_6"> </td>
 					<td class="main_menu_element_5">
 						<a href="{{ url('/login') }}" id = 'a_login'>
-							<img src="{!! URL::asset('content/icons/login_icon.png')!!}" alt="LOGIN">
+							<img src="{{ URL::asset('content/icons/login_icon2.png') }}" alt={{config('constants.login')}}>
 						</a>
 					</td>
 					<td class="main_menu_element_4"> </td>
 					<td class="main_menu_element_3">
 						<a href="{{ url('/account') }}" id = 'a_account'>
-							<img src="{!! URL::asset('content/icons/user_icon.png')!!}" alt="ACCOUNT">
+							<img src="{!! URL::asset('content/icons/user_icon2.png')!!}" alt={{config('constants.account')}}>
 						</a>
 					</td>
 					<td class="main_menu_element_2"> </td>
 					<td class="main_menu_element_1">
 						<a href="{{ url('/main_page') }}" id = 'a_main'>
-							<img src="{!! URL::asset('content/icons/lang.png')!!}" alt="MAIN PAGE">
+							<img src="{!! URL::asset('content/icons/lang2.png')!!}" alt="MAIN PAGE">
 						</a>
 					</td>
 					<td class="main_menu_element_2"> </td>
@@ -71,7 +55,7 @@
 					<td class="main_menu_element_4"> </td>
 					<td class="main_menu_element_5">
 						<a href="{{ url('/contacts') }}" >
-							<img src="{!! URL::asset('content/icons/contacts_icon.png')!!}" alt="CONTACTS">
+							<img src="{!! URL::asset('content/icons/contacts_icon2.png')!!}" alt={{config('constants.contacts')}}>
 						</a>
 					</td>
 					<td class="main_menu_element_6"> </td>
@@ -104,10 +88,10 @@
 			<nav>
 				<ul>
 					<li>
-						<a href="{{ url('/login') }}">Login</a>
+						<a href="{{ url('/login') }}">{{config('constants.login')}}</a>
 					</li>
 					<li>
-						<a href="{{ url('/account') }}">Account</a>
+						<a href="{{ url('/account') }}">{{config('constants.account')}}</a>
 					</li>
 				</ul>
 			</nav>
@@ -116,9 +100,21 @@
 		<div class="footer_column">
 		<nav>
 			<ul>
-				<li>Language</li>
-				<li>Eng</li>
-				<li>Rus</li>
+				<li>{{config('constants.language')}}</li>
+
+
+				{{Lang::get('constants.welcome')}}
+
+				<li><a href="{{ url("setlocale/en") }}">ENG</a></li>
+
+				<li><a href="{{ url("setlocale/ru") }}">RU</a></li>
+
+
+
+
+				<a href="<?= route('setlocale', ['lang' => 'en']) ?>">English</a>
+				<a href="<?= route('setlocale', ['lang' => 'ru']) ?>">Русский</a>
+
 			</ul>
 		</nav>
 		</div>
@@ -128,7 +124,7 @@
 			<nav>
 				<ul>
 					<li>
-						<a href="{{ url('/contacts') }}" >Contacts</a>
+						<a href="{{ url('/contacts') }}" >{{config('constants.contacts')}}</a>
 					</li>
 
 					<li>

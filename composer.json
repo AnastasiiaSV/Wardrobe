@@ -31,7 +31,11 @@
         ],
         "psr-4": {
             "Wardrobe\\": "app/"
-        }
+        },
+
+        "files": [
+            "vendor/laravel/framework/src/Illuminate/Support/Facades/Cookie.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

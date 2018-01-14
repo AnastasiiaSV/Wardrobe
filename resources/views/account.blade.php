@@ -4,12 +4,11 @@
 
       <div class="long_page">
               <!-- user's wardrobes -->
-              <h2>User's wardrobes</h2>
+              <h2>{{config('constants.users_wardrobes')}}</h2>
               <?php
 
           if (!isset($user_id)){
               $user_id = Cookie::get('UserId');
-              echo $_COOKIE['UserId'];
           }
           else{
           }
@@ -24,12 +23,12 @@
               {!! Form::open(['action' => ['WardrobeController@gotoNewWardrobePage']]);!!}
              {!! Form::hidden('creator_id', $user_id); !!}
               <div class="field-wrap button button-block" >
-                  {!! Form::submit('NEW WARDROBE') ; !!}
+                  {!! Form::submit(config('constants.new_wardrobe')) ; !!}
               </div>
               {!! Form::close() !!}
           <hr>
 
-              <h2>User's outfits</h2>
+              <h2>{{config('constants.users_outfits')}}</h2>
               <?php
               $outfits = \Wardrobe\Http\Controllers\AccountController::getUserOutfits($user_id);
               ?>
@@ -38,10 +37,7 @@
               <div class="item_name_container">
                   <a href="{{ url("outfit/{$outfit->id}") }}">{{$outfit->name}}</a>
               </div>
-
-
                       <div class="items_container_main_large">
-
                           <!--put all items ids of current outfit from mane-to-many table Items_Outfits-->
                           @foreach (\Wardrobe\Http\Controllers\AccountController::getOutfitItems($outfit->id) as $item)
                               <?php
@@ -57,7 +53,7 @@
           <hr>
           {!! Form::open(['action' => ['LoginController@doLogout']]);!!}
           <div class="field-wrap button button-block" >
-              {!! Form::submit('LOGOUT') ; !!}
+              {!! Form::submit(config('constants.logout')) ; !!}
           </div>
           {!! Form::close() !!}
       </div>

@@ -13,7 +13,7 @@
             {!! Form::hidden('wardrobe_id', $wardrobe->id); !!}
             {!! Form::hidden('creator_id', $creator_id); !!}
         <div class="field-wrap button button-block" >
-            {!! Form::submit('CREATE OUTFIT') ; !!}
+            {!! Form::submit(config('constants.create_outfit')) ; !!}
         </div>
         {!! Form::close() !!}
 
@@ -22,7 +22,7 @@
             {!! Form::hidden('wardrobe_id', $wardrobe->id); !!}
             {!! Form::hidden('creator_id', $creator_id); !!}
         <div class="field-wrap button button-block" >
-            {!! Form::submit('NEW ITEM') ; !!}
+            {!! Form::submit(config('constants.new_item')) ; !!}
         </div>
         {!! Form::close() !!}
 
@@ -47,7 +47,7 @@
                     @endforeach
                 </div>
              @else
-                 No elements
+                {{config('constants.no_items')}}
             @endif
 
 

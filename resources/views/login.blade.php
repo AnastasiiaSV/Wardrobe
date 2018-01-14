@@ -7,8 +7,8 @@
 
             <div id="two" class="block">
                 <div class="tabs_block">
-                    <a href="#one">LOGIN</a>
-                    <b><a href="#two">SIGN UP</a></b>
+                    <a href="#one">{{config('constants.login')}}</a>
+                    <b><a href="#two">{{config('constants.sign_up')}}</a></b>
                 </div>
                     {!! Form::open(['action' => ['LoginController@doSignUp']]);!!}
                     <!-- if there are login errors, show them here -->
@@ -18,34 +18,34 @@
                     </p>
 
                     <div class="field-wrap" >
-                        {{ Form::label('email', 'Email Address') }}
+                        {{ Form::label('email', config('constants.email')) }}
                         {{Form::text('email', 'ivan@gmail.com') }}
                     </div>
 
                     <div class="field-wrap" >
-                        {{ Form::label('password', 'Password') }}
+                        {{ Form::label('password', config('constants.password') ) }}
                         {{ Form::password('password') }}
                     </div>
 
                     <div class="field-wrap" >
-                        {{ Form::text('name', 'Name') }}
+                        {{ Form::text('name', config('constants.name')) }}
                     </div>
 
                     <div class="field-wrap" >
-                        {{ Form::text('surname', 'Surname') }}
+                        {{ Form::text('surname', config('constants.surname')) }}
                     </div>
 
                     <div class="field-wrap" >
-                        {{ Form::text('phone', 'Phone (099267667772)') }}
+                        {{ Form::text('phone', config('constants.phone').'(099267667772)' ) }}
                     </div>
 
                     <div class="field-wrap" >
-                        {{ Form::label('birth', 'Date of birth') }}
+                        {{ Form::label('birth', config('constants.date_of_birth')) }}
                         {{ Form::date('birth', \Carbon\Carbon::now()) }}
                     </div>
 
                     <div class="field-wrap">
-                        {{ Form::label('country', 'Country') }}
+                        {{ Form::label('country', config('constants.country')) }}
                         <?php
                         $countries = \Wardrobe\Http\Controllers\MainController::getCountriesList();
                         ?>
@@ -53,7 +53,7 @@
                     </div>
 
                     <div class="field-wrap">
-                        {{ Form::label('city', 'City') }}
+                        {{ Form::label('city', config('constants.city')) }}
 
                         <?php
                         /**
@@ -70,7 +70,7 @@
 
 
                     <div class="field-wrap button button-block" >
-                        {!! Form::submit('SIGN UP') ; !!}
+                        {!! Form::submit(config('constants.sign_up')) ; !!}
                     </div>
 
                     {{ Form::close() }}
@@ -81,8 +81,8 @@
 
             <div id="one" class="block">
                 <div class="tabs_block">
-                    <b><a href="#one">LOGIN</a></b>
-                    <a href="#two">SIGN UP</a>
+                    <b><a href="#one">{{config('constants.login')}}</a></b>
+                    <a href="#two">{{config('constants.sign_up')}}</a>
                 </div>
                 {!! Form::open(['action' => ['LoginController@doLogin']]);!!}
                 <!-- if there are login errors, show them here -->
@@ -92,24 +92,24 @@
                 </p>
 
                 <div class="field-wrap" >
-                      {{ Form::label('email', 'Email Address') }}
+                      {{ Form::label('email', config('constants.email')) }}
                     <div id = 'email'> {{ Form::text('email', 'as@gmail.com') }} </div>
                 </div>
 
                 <div class="field-wrap" >
-                    {{ Form::label('password', 'Password') }}
+                    {{ Form::label('password', config('constants.password')) }}
                     {{ Form::password('password') }}
                 </div>
 
                 <!--
                 <div class="field-wrap" >
-                    {{ Form::label('check-remember', 'Remember me') }}
+                    {{ Form::label('check-remember', config('constants.remember')) }}
                     {{ Form::checkbox("check-remember", "remember") }}
                 </div>
                 -->
 
                 <div class="field-wrap button button-block" >
-                    {!! Form::submit('LOGIN') ; !!}
+                    {!! Form::submit(config('constants.login')) ; !!}
                 </div>
 
                 {{ Form::close() }}

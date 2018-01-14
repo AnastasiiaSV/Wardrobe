@@ -4,7 +4,7 @@
 
     <div class="long_page">
 
-        <h2>Outfit</h2>
+        <h2>{{config('constants.outfit')}}</h2>
 
         <?php
         $outfit = $vars[0];
@@ -12,20 +12,20 @@
         ?>
 
         <p>
-            Name:  <a href="{{ url("outfit/{$outfit->id}") }}">{{$outfit->name}}</a>
+            {{config('constants.not_alive_name')}}:  <a href="{{ url("outfit/{$outfit->id}") }}">{{$outfit->name}}</a>
             <br>
-            Description: {{$outfit->declaration}}
+            {{config('constants.description')}}: {{$outfit->declaration}}
             <br>
-            Creation: {{$outfit->time_of_creation}}
+            {{config('constants.creation')}}: {{$outfit->time_of_creation}}
             <br>
-            Wardrobe: {{$wardrobe->name}}
+            {{config('constants.wardrobe')}}: {{$wardrobe->name}}
 
             <br>
-            <a href="{{ url("edit_outfit/{$outfit->id}") }}">Press here to edit outfit</a>
+            <a href="{{ url("edit_outfit/{$outfit->id}") }}">{{config('constants.press_to_edit_item')}}</a>
 
         </p>
 
-        <p>Items: </p>
+        <p>{{config('constants.items')}}: </p>
             <div class="items_container_main_large">
 
                 <!--put all items ids of current outfit from mane-to-many table Items_Outfits-->

@@ -8,7 +8,7 @@
         <div class="button_form">
             {!! Form::open(['action' => ['LoginController@gotoLoginPage']]);!!}
             <div class="field-wrap button button-block" >
-                {!! Form::submit('LETS START') ; !!}
+                {!! Form::submit(config('constants.lets_start')) ; !!}
             </div>
             {!! Form::close() !!}
         </div>
