@@ -2,7 +2,7 @@
 @section('title', 'WARDROBE')
 @section('content')
 
-    <div class="long_page">
+    <div class="page">
 
         <?php
         $outfit = $vars[0];
@@ -11,16 +11,15 @@
 
         <div id="three" class="block">
             <div class="tabs_block">
-                <b><a href="#one">{{config('constants.outfit_declaration')}} </a></b>
-                <b><a href="#two">{{config('constants.delete_items')}} </a></b>
-                <a href="#three">{{config('constants.add_items')}}</a>
+                <b><a href="#one">{{Lang::get('constants.outfit_declaration')}} </a></b>
+                <b><a href="#two">{{Lang::get('constants.delete_items')}} </a></b>
+                <a href="#three">{{Lang::get('constants.add_items')}}</a>
             </div>
 
             {!! Form::open(['action' => ['OutfitController@addItemsToOutfit']]);!!}
             {!! Form::hidden('outfit_id', $outfit->id); !!}
-            <div class="field-wrap button button-block" >
-                {!! Form::submit(config('constants.add_items_to_outfit')) ; !!}
-            </div>
+            {!! Form::submit(Lang::get('constants.add_items_to_outfit'), array('class'=>'field-wrap button button-block')) ; !!}
+
 
             @foreach (\Wardrobe\Http\Controllers\MainController::getCategories() as $category)
                 @foreach (\Wardrobe\Http\Controllers\WardrobeController::wardrobeCategoryItems($wardrobe->id, $category->id) as $item)
@@ -37,18 +36,16 @@
 
         <div id="two" class="block">
             <div class="tabs_block">
-                <b><a href="#one" style="text-align: center">{{config('constants.outfit_declaration')}} </a></b>
-                <a href="#two">{{config('constants.delete_items')}} </a>
-                <b><a href="#three">{{config('constants.add_items')}}</a></b>
+                <b><a href="#one" style="text-align: center">{{Lang::get('constants.outfit_declaration')}} </a></b>
+                <a href="#two">{{Lang::get('constants.delete_items')}} </a>
+                <b><a href="#three">{{Lang::get('constants.add_items')}}</a></b>
             </div>
 
             {!! Form::open(['action' => ['OutfitController@deleteItemsFromOutfit']]);!!}
-            <div class="field-wrap button button-block" >
-                {!! Form::submit(config('constants.delete_items')) ; !!}
-                {!! Form::hidden('outfit_id', $outfit->id); !!}
-            </div>
+            {!! Form::submit(Lang::get('constants.delete_items'), array('class'=>'field-wrap button button-block')) ; !!}
+            {!! Form::hidden('outfit_id', $outfit->id); !!}
 
-            <p>{{config('constants.items_in_outfit')}}: </p>
+            <p>{{Lang::get('constants.items_in_outfit')}}: </p>
 
                 @foreach (\Wardrobe\Http\Controllers\AccountController::getOutfitItems($outfit->id) as $item)
                     <?php
@@ -66,9 +63,9 @@
 
         <div id="one" class="block">
             <div class="tabs_block">
-                <a href="#one">{{config('constants.outfit_declaration')}} </a>
-                <b><a href="#two">{{config('constants.delete_items')}} </a></b>
-                <b><a href="#three">{{config('constants.add_items')}} </a></b>
+                <a href="#one">{{Lang::get('constants.outfit_declaration')}} </a>
+                <b><a href="#two">{{Lang::get('constants.delete_items')}} </a></b>
+                <b><a href="#three">{{Lang::get('constants.add_items')}} </a></b>
             </div>
 
             {!! Form::open(['action' => ['OutfitController@editOutfitDeclaration']]);!!}
@@ -77,18 +74,16 @@
                 {!! Form::text('name', $outfit->name); !!}
                 {!! Form::text('declaration', $outfit->declaration); !!}
             </div>
-            <div class="field-wrap button button-block" >
-                {!! Form::submit(config('constants.edit')) ; !!}
-            </div>
+
+            {!! Form::submit(Lang::get('constants.edit'), array('class'=>'field-wrap button button-block')) ; !!}
+
             {!! Form::close() !!}
 
 
             {!! Form::open(['action' => ['OutfitController@deleteOutfit']]);!!}
             {!! Form::hidden('outfit_id', $outfit->id); !!}
             {!! Form::hidden('wardrobe_id', $wardrobe->id); !!}
-            <div class="field-wrap button button-block" >
-                {!! Form::submit(config('constants.delete_outfit')) ; !!}
-            </div>
+            {!! Form::submit(Lang::get('constants.delete_outfit'), array('class'=>'field-wrap button button-block')) ; !!}
             {!! Form::close() !!}
 
         </div>

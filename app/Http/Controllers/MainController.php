@@ -16,11 +16,18 @@ use Wardrobe\Models\Country;
 use Wardrobe\Models\City;
 use Wardrobe\Models\Place;
 use Wardrobe\Models\Outfit;
+use App;
+use Config;
+
 class MainController extends Controller
 {
     public  function index(){
-        return response(view('main_page'))
-            ->cookie('Lang', 'en', 60);
+        //язык
+        $conf_locale = Config::get('app.locale');
+        $locale = Cookie::get('Lang', $conf_locale);
+        App::setLocale($locale);
+
+        return view('main_page');
     }
 
     public  function gotoPostsPage(Request $request){

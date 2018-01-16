@@ -7,10 +7,17 @@ use Wardrobe\Models\Item;
 use Wardrobe\Models\Item_Outfit;
 use Wardrobe\Models\Outfit;
 use Wardrobe\Models\Wardrobe;
-
+use App;
+use Config;
+use Illuminate\Support\Facades\Cookie;
 class OutfitController extends Controller
 {
     public  function index(){
+        //язык
+        $conf_locale = Config::get('app.locale');
+        $locale = Cookie::get('Lang', $conf_locale);
+        App::setLocale($locale);
+
         return view('item');
     }
 

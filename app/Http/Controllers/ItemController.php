@@ -5,10 +5,16 @@ use Illuminate\Http\Request;
 use Wardrobe\Models\Category;
 use Wardrobe\Models\Item;
 use Wardrobe\Models\Wardrobe_Item;
-
+use App;
+use Config;
+use Illuminate\Support\Facades\Cookie;
 class ItemController extends Controller
 {
     public  function index(){
+        //язык
+        $conf_locale = Config::get('app.locale');
+        $locale = Cookie::get('Lang', $conf_locale);
+        App::setLocale($locale);
 
         return view('item');
     }

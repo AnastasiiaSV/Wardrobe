@@ -3,6 +3,8 @@
 namespace Wardrobe\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App;
+use Config;
 
 use Illuminate\Support\Facades\Cookie;
 use Wardrobe\Models\Item_Outfit;
@@ -15,10 +17,14 @@ use Wardrobe\Models\Wardrobe;
 class AccountController extends Controller
 {
     public  function index(){
+        //язык
+        $conf_locale = Config::get('app.locale');
+        $locale = Cookie::get('Lang', $conf_locale);
+        App::setLocale($locale);
+
         //передавать сюда id вошедшего пользователя
         //и открывать его страницу
         //id находится в куке
-
         $user_id = Cookie::get('UserId');
 
         if (isset($user_id)) {

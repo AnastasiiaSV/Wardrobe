@@ -2,7 +2,7 @@
 @section('title', 'PRICE GAME')
 @section('content')
 
-<div class="long_page">
+<div class="no_overflow_page">
 
     <?php
         $creator_id = Cookie::get('UserId');
@@ -12,18 +12,14 @@
         {!! Form::open(['action' => ['WardrobeController@gotoNewOutfitPage']]);!!}
             {!! Form::hidden('wardrobe_id', $wardrobe->id); !!}
             {!! Form::hidden('creator_id', $creator_id); !!}
-        <div class="field-wrap button button-block" >
-            {!! Form::submit(config('constants.create_outfit')) ; !!}
-        </div>
+            {!! Form::submit(Lang::get('constants.create_outfit'), array('class'=>'field-wrap button button-block')) ; !!}
         {!! Form::close() !!}
 
 
         {!! Form::open(['action' => ['WardrobeController@gotoNewItemPage']]);!!}
             {!! Form::hidden('wardrobe_id', $wardrobe->id); !!}
             {!! Form::hidden('creator_id', $creator_id); !!}
-        <div class="field-wrap button button-block" >
-            {!! Form::submit(config('constants.new_item')) ; !!}
-        </div>
+            {!! Form::submit(Lang::get('constants.new_item'), array('class'=>'field-wrap button button-block')) ; !!}
         {!! Form::close() !!}
 
         @foreach (\Wardrobe\Http\Controllers\MainController::getCategories() as $category)
@@ -47,7 +43,7 @@
                     @endforeach
                 </div>
              @else
-                {{config('constants.no_items')}}
+                {{Lang::get('constants.no_items')}}
             @endif
 
 

@@ -3,13 +3,11 @@
 
 @section('content')
 
-    <div class="long_page">
+    <div class="page">
 
         <div class="button_form">
             {!! Form::open(['action' => ['LoginController@gotoLoginPage']]);!!}
-            <div class="field-wrap button button-block" >
-                {!! Form::submit(config('constants.lets_start')) ; !!}
-            </div>
+            {!! Form::submit(Lang::get('constants.lets_start'), array('class'=>'field-wrap button button-block')) ; !!}
             {!! Form::close() !!}
         </div>
 

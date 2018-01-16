@@ -12,13 +12,11 @@
         {!! Form::open(['action' => ['OutfitController@createOutfit']]);!!}
             {!! Form::hidden('creator_id', $creator_id); !!}
             {!! Form::hidden('wardrobe_id', $wardrobe); !!}
-        <div class="field-wrap button button-block" >
-            {!! Form::submit(config('constants.create_outfit')) ; !!}
-        </div>
+            {!! Form::submit(Lang::get('constants.create_outfit'), array('class'=>'field-wrap button button-block')) ; !!}
 
         <div class="field-wrap">
-            {!! Form::text('name', config('constants.new_outfit_name')); !!}
-            {!! Form::text('declaration', config('constants.new_outfit_declaration')); !!}
+            {!! Form::text('name', Lang::get('constants.new_outfit_name')); !!}
+            {!! Form::text('declaration', Lang::get('constants.new_outfit_declaration')); !!}
         </div>
         <!-- All items from wardrobe as check-boxes -->
         @foreach (\Wardrobe\Http\Controllers\MainController::getCategories() as $category)
@@ -32,7 +30,7 @@
 
                     @endforeach
             @else
-                    {{config('constants.no_items')}}
+                    {{Lang::get('constants.no_items')}}
             @endif
         @endforeach
 

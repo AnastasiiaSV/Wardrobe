@@ -87,29 +87,7 @@
     height: 12%;
 }
 
-/** for out items at the right side of page */
-.top_box{
-    width: 14.5%;
-    height: 7%;
-    margin-left: 1.65%;
-    margin-bottom: 1%;
-    padding: 0.25% 1%;
-    display: inline-block;
 
-    background-image: url("../images/icons/star_icon.png");
-    background-position: center center;
-    background-repeat: no-repeat;
-
-    text-align: center;
-    background-size: 25% 90%;
-}
-
-.top_box h2{
-    font-size: 1em;
-    font-weight: bold;
-    opacity: 0.9;
-    letter-spacing: 1.05em;
-}
 
 .item_container_slider{
     width: 16.5%;

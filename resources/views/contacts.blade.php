@@ -9,7 +9,7 @@
         </div>
 
         <div class="item_info_block">
-            <p> {{config('constants.contacts_text')}}
+            <p> {{Lang::get('constants.contacts_text')}}
             </p>
             <p>anastsamot@gmail.com</p>
         </div>

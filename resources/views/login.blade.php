@@ -2,50 +2,52 @@
 @section('title', 'WARDROBE')
 @section('content')
 
-    <div class="page">
+    <div class="no_overflow_page">
+
         <div class="login_form">
 
             <div id="two" class="block">
                 <div class="tabs_block">
-                    <a href="#one">{{config('constants.login')}}</a>
-                    <b><a href="#two">{{config('constants.sign_up')}}</a></b>
+                    <a href="#one">{{Lang::get('constants.login')}}</a>
+                    <b><a href="#two">{{Lang::get('constants.sign_up')}}</a></b>
                 </div>
                     {!! Form::open(['action' => ['LoginController@doSignUp']]);!!}
                     <!-- if there are login errors, show them here -->
                     <p>
-                        {{ $errors->first('email') }}
-                        {{ $errors->first('password') }}
+                        {!! $errors->first('email') !!}
+                        {!! $errors->first('password') !!}
                     </p>
 
-                    <div class="field-wrap" >
-                        {{ Form::label('email', config('constants.email')) }}
-                        {{Form::text('email', 'ivan@gmail.com') }}
+
+                        {!! Form::label('email', Lang::get('constants.email'), array('class'=>'field-wrap')) !!}
+                <div class="field-wrap" >
+                        {!!Form::text('email', 'ivan@gmail.com') !!}
                     </div>
 
                     <div class="field-wrap" >
-                        {{ Form::label('password', config('constants.password') ) }}
-                        {{ Form::password('password') }}
+                        {!! Form::label('password', Lang::get('constants.password') ) !!}
+                        {!! Form::password('password') !!}
                     </div>
 
                     <div class="field-wrap" >
-                        {{ Form::text('name', config('constants.name')) }}
+                        {!! Form::text('name', Lang::get('constants.name')) !!}
                     </div>
 
                     <div class="field-wrap" >
-                        {{ Form::text('surname', config('constants.surname')) }}
+                        {!! Form::text('surname', Lang::get('constants.surname')) !!}
                     </div>
 
                     <div class="field-wrap" >
-                        {{ Form::text('phone', config('constants.phone').'(099267667772)' ) }}
+                        {!! Form::text('phone', Lang::get('constants.phone').'(099267667772)' ) !!}
                     </div>
 
                     <div class="field-wrap" >
-                        {{ Form::label('birth', config('constants.date_of_birth')) }}
-                        {{ Form::date('birth', \Carbon\Carbon::now()) }}
+                        {!! Form::label('birth', Lang::get('constants.date_of_birth')) !!}
+                        {!! Form::date('birth', \Carbon\Carbon::now()) !!}
                     </div>
 
                     <div class="field-wrap">
-                        {{ Form::label('country', config('constants.country')) }}
+                        {!! Form::label('country', Lang::get('constants.country')) !!}
                         <?php
                         $countries = \Wardrobe\Http\Controllers\MainController::getCountriesList();
                         ?>
@@ -53,7 +55,7 @@
                     </div>
 
                     <div class="field-wrap">
-                        {{ Form::label('city', config('constants.city')) }}
+                        {!! Form::label('city', Lang::get('constants.city')) !!}
 
                         <?php
                         /**
@@ -68,12 +70,9 @@
                         {!! Form::select('city_id', $cities); !!}
                     </div>
 
+                    {!! Form::submit(Lang::get('constants.sign_up'), array('class'=>'field-wrap button button-block')) ; !!}
 
-                    <div class="field-wrap button button-block" >
-                        {!! Form::submit(config('constants.sign_up')) ; !!}
-                    </div>
-
-                    {{ Form::close() }}
+                    {!! Form::close(); !!}
 
                 </div> <!-- /form -->
 
@@ -81,8 +80,8 @@
 
             <div id="one" class="block">
                 <div class="tabs_block">
-                    <b><a href="#one">{{config('constants.login')}}</a></b>
-                    <a href="#two">{{config('constants.sign_up')}}</a>
+                    <b><a href="#one">{{Lang::get('constants.login')}}</a></b>
+                    <a href="#two">{{Lang::get('constants.sign_up')}}</a>
                 </div>
                 {!! Form::open(['action' => ['LoginController@doLogin']]);!!}
                 <!-- if there are login errors, show them here -->
@@ -92,27 +91,25 @@
                 </p>
 
                 <div class="field-wrap" >
-                      {{ Form::label('email', config('constants.email')) }}
-                    <div id = 'email'> {{ Form::text('email', 'as@gmail.com') }} </div>
+                      {!! Form::label('email', Lang::get('constants.email')) !!}
+                    <div id = 'email'> {!! Form::text('email', 'as@gmail.com') !!} </div>
                 </div>
 
                 <div class="field-wrap" >
-                    {{ Form::label('password', config('constants.password')) }}
-                    {{ Form::password('password') }}
+                    {!! Form::label('password', Lang::get('constants.password')) !!}
+                    {!! Form::password('password') !!}
                 </div>
 
                 <!--
                 <div class="field-wrap" >
-                    {{ Form::label('check-remember', config('constants.remember')) }}
-                    {{ Form::checkbox("check-remember", "remember") }}
+                    {!! Form::label('check-remember', Lang::get('constants.remember')) !!}
+                    {!! Form::checkbox("check-remember", "remember") !!}
                 </div>
                 -->
 
-                <div class="field-wrap button button-block" >
-                    {!! Form::submit(config('constants.login')) ; !!}
-                </div>
+                {!! Form::submit(Lang::get('constants.login'), array('class'=>'field-wrap button button-block')) ; !!}
 
-                {{ Form::close() }}
+                {!! Form::close() !!}
 
             </div> <!-- /form -->
 

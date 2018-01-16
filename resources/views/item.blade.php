@@ -16,20 +16,20 @@
             ?>
 
             <p>
-                {{config('constants.not_alive_name')}}: {{ "$item->name" }}
+                {{Lang::get('constants.not_alive_name')}}: {{ "$item->name" }}
                 <br>
-                {{config('constants.creation')}}: {{ "$item->time_of_creation" }}
+                {{Lang::get('constants.creation')}}: {{ "$item->time_of_creation" }}
                 <br>
-                {{config('constants.category')}}: {{ "$category->name" }}
+                {{Lang::get('constants.category')}}: {{ "$category->name" }}
                 <br>
-                {{config('constants.season')}}: {{ "$season->name" }}
+                {{Lang::get('constants.season')}}: {{ "$season->name" }}
                 <br>
-                {{config('constants.storage')}}: {{ "$place->name" }}
+                {{Lang::get('constants.storage')}}: {{ "$place->name" }}
             </p>
 
             <hr>
             <p>
-            <a href="{{ url("edit_item/{$item->id}") }}">{{config('constants.press_to_edit_item')}}</a>
+            <a href="{{ url("edit_item/{$item->id}") }}">{{Lang::get('constants.press_to_edit_item')}}</a>
             </p>
 
         </div>

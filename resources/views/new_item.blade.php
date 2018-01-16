@@ -2,7 +2,7 @@
 @section('title', 'PRICE GAME')
 @section('content')
 
-    <div class="page">
+    <div class="no_overflow_page">
 
         <div class="login_form">
             {!! Form::open(array('action' => ['ItemController@createItem'],'files'=>'true'));!!}
@@ -10,11 +10,11 @@
             {!! Form::hidden('wardrobe_id', $vars[0]->id); !!}
 
             <div class="field-wrap">
-                {!! Form::text('name', config('constants.new_element_name')); !!}
+                {!! Form::text('name', Lang::get('constants.new_element_name')); !!}
             </div>
 
             <div class="field-wrap">
-                {!! Form::label('label_category', config('constants.category'));!!}
+                {!! Form::label('label_category', Lang::get('constants.category'));!!}
                 <?php
                 $categories = \Wardrobe\Http\Controllers\MainController::getCategoriesList();
                 ?>
@@ -23,7 +23,7 @@
 
             <div class="field-wrap">
 
-                {!! Form::label('label_type', config('constants.type'));!!}
+                {!! Form::label('label_type', Lang::get('constants.type'));!!}
 
                 <?php
                 $categories = \Wardrobe\Http\Controllers\MainController::getCategories();
@@ -43,11 +43,11 @@
 
                 {!! Form::select('type_id', $types_arr); !!}
 
-                {!! Form::label('label_type2', '('.config('constants.choose_for_given').')');!!}
+                {!! Form::label('label_type2', '('.Lang::get('constants.choose_for_given').')');!!}
             </div>
 
             <div class="field-wrap">
-                {!! Form::label('label_season', config('constants.season'));!!}
+                {!! Form::label('label_season', Lang::get('constants.season'));!!}
                 <?php
                 $seasons = \Wardrobe\Http\Controllers\MainController::getSeasonsList();
                 ?>
@@ -56,7 +56,7 @@
             </div>
 
             <div class="field-wrap">
-                {!! Form::label('label_places', config('constants.storage'));!!}
+                {!! Form::label('label_places', Lang::get('constants.storage'));!!}
                 <?php
                 $places = \Wardrobe\Http\Controllers\MainController::getPlacesList();
                 ?>
@@ -68,9 +68,7 @@
                 {!! Form::file('file',['class' => 'form-control'])!!}
             </div>
 
-            <div class="field-wrap button button-block" >
-                {!! Form::submit(config('constants.create')) ; !!}
-            </div>
+            {!! Form::submit(Lang::get('constants.create'), array('class'=>'field-wrap button button-block')) ; !!}
 
             {!! Form::close() !!}
 

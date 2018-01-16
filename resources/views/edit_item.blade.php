@@ -18,12 +18,12 @@
             ?>
 
                 <div class="field-wrap">
-                    {!! Form::label('label_name', config('constants.not_alive_name') );!!}
+                    {!! Form::label('label_name', Lang::get('constants.not_alive_name') );!!}
                     {!! Form::text('name', "$item->name"); !!}
                 </div>
 
                 <div class="field-wrap">
-                    {!! Form::label('label_category', config('constants.category'));!!}
+                    {!! Form::label('label_category', Lang::get('constants.category'));!!}
                     <?php
                     $categories = \Wardrobe\Http\Controllers\MainController::getCategoriesList();
                     ?>
@@ -33,7 +33,7 @@
 
                 <div class="field-wrap">
 
-                    {!! Form::label('label_type', config('constants.type'));!!}
+                    {!! Form::label('label_type', Lang::get('constants.type'));!!}
 
                     <?php
 
@@ -54,12 +54,12 @@
                     ?>
                     {!! Form::select('type_id', $types_arr); !!}
 
-                    {!! Form::label('label_type2', '('.config('constants.choose_for_given').')');!!}
+                    {!! Form::label('label_type2', '('.Lang::get('constants.choose_for_given').')');!!}
                 </div>
 
 
                 <div class="field-wrap">
-                    {!! Form::label('label_season', config('constants.season'));!!}
+                    {!! Form::label('label_season', Lang::get('constants.season'));!!}
                     <?php
                     $seasons = \Wardrobe\Http\Controllers\MainController::getSeasonsList();
                     ?>
@@ -67,19 +67,16 @@
                 </div>
 
                 <div class="field-wrap">
-                    {!! Form::label('label_places', config('constants.storage'));!!}
+                    {!! Form::label('label_places', Lang::get('constants.storage'));!!}
                     <?php
                     $places = \Wardrobe\Http\Controllers\MainController::getPlacesList();
                     ?>
                     {!! Form::select('place_id', $places, $item->place_id); !!}
                 </div>
 
-
-            <div class="field-wrap button button-block" >
-                {!! Form::submit(config('constants.edit')) ; !!}
-            </div>
-
+             {!! Form::submit(Lang::get('constants.edit'), array('class'=>'field-wrap button button-block')) ; !!}
              {!! Form::close() !!}
+
                 <hr>
         </div>
 
@@ -91,9 +88,7 @@
 
         <div class="item_info_block">
 
-                <div class="field-wrap button button-block" >
-                    {!! Form::submit(config('constants.delete_item')) ; !!}
-                </div>
+                {!! Form::submit(config('constants.delete_item'), array('class'=>'field-wrap button button-block')) ; !!}
                 {!! Form::close() !!}
         </div>
 

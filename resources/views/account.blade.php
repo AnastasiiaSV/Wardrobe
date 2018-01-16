@@ -2,9 +2,9 @@
   @section('title', 'WARDROBE')
   @section('content')
 
-      <div class="long_page">
+      <div class="no_overflow_page">
               <!-- user's wardrobes -->
-              <h2>{{config('constants.users_wardrobes')}}</h2>
+              <h2>{{Lang::get('constants.users_wardrobes')}}</h2>
               <?php
 
           if (!isset($user_id)){
@@ -20,15 +20,13 @@
               @endforeach
 
             <!-- new wardrobe creating -->
-              {!! Form::open(['action' => ['WardrobeController@gotoNewWardrobePage']]);!!}
-             {!! Form::hidden('creator_id', $user_id); !!}
-              <div class="field-wrap button button-block" >
-                  {!! Form::submit(config('constants.new_wardrobe')) ; !!}
-              </div>
-              {!! Form::close() !!}
+            {!! Form::open(['action' => ['WardrobeController@gotoNewWardrobePage']]);!!}
+            {!! Form::hidden('creator_id', $user_id); !!}
+            {!! Form::submit(Lang::get('constants.new_wardrobe'),array('class'=>'field-wrap button button-block')) ; !!}
+            {!! Form::close() !!}
           <hr>
 
-              <h2>{{config('constants.users_outfits')}}</h2>
+              <h2>{{Lang::get('constants.users_outfits')}}</h2>
               <?php
               $outfits = \Wardrobe\Http\Controllers\AccountController::getUserOutfits($user_id);
               ?>
@@ -51,10 +49,10 @@
               @endforeach
 
           <hr>
+
           {!! Form::open(['action' => ['LoginController@doLogout']]);!!}
-          <div class="field-wrap button button-block" >
-              {!! Form::submit(config('constants.logout')) ; !!}
-          </div>
+          {!! Form::submit(Lang::get('constants.logout'), array('class'=>'field-wrap button button-block')) ; !!}
           {!! Form::close() !!}
+          <div class="items_container_main_large"> <div class="item_container_main_single"> </div> </div>
       </div>
   @stop

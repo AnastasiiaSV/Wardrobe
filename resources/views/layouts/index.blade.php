@@ -33,34 +33,41 @@
 					<td class="main_menu_element_8"> </td>
 					<td class="main_menu_element_7"> </td>
 					<td class="main_menu_element_6"> </td>
-					<td class="main_menu_element_5">
-						<a href="{{ url('/login') }}" id = 'a_login'>
-							<img src="{{ URL::asset('content/icons/login_icon2.png') }}" alt={{config('constants.login')}}>
-						</a>
+					<td class="main_menu_element_5"> </td>
+					<td class="main_menu_element_4">
+
 					</td>
-					<td class="main_menu_element_4"> </td>
 					<td class="main_menu_element_3">
 						<a href="{{ url('/account') }}" id = 'a_account'>
-							<img src="{!! URL::asset('content/icons/user_icon2.png')!!}" alt={{config('constants.account')}}>
+							<img src="{!! URL::asset('content/icons/user_icon3.png')!!}" alt={{Lang::get('constants.account')}}>
 						</a>
 					</td>
-					<td class="main_menu_element_2"> </td>
+					<td class="main_menu_element_2">
+
+					</td>
 					<td class="main_menu_element_1">
 						<a href="{{ url('/main_page') }}" id = 'a_main'>
 							<img src="{!! URL::asset('content/icons/lang2.png')!!}" alt="MAIN PAGE">
 						</a>
 					</td>
-					<td class="main_menu_element_2"> </td>
-					<td class="main_menu_element_3"></td>
-					<td class="main_menu_element_4"> </td>
-					<td class="main_menu_element_5">
+					<td class="main_menu_element_2">
+
+					</td>
+					<td class="main_menu_element_3">
 						<a href="{{ url('/contacts') }}" >
-							<img src="{!! URL::asset('content/icons/contacts_icon2.png')!!}" alt={{config('constants.contacts')}}>
+							<img src="{!! URL::asset('content/icons/contacts_icon3.png')!!}" alt={{Lang::get('constants.contacts')}}>
 						</a>
+
+					</td>
+					<td class="main_menu_element_4">
+
+					</td>
+					<td class="main_menu_element_5">
+
 					</td>
 					<td class="main_menu_element_6"> </td>
 					<td class="main_menu_element_7"> </td>
-					<td class="main_menu_element_8"></td>
+					<td class="main_menu_element_8"> </td>
 					<td class="main_menu_element_9"> </td>
 				</tr>
 			</table>
@@ -88,10 +95,10 @@
 			<nav>
 				<ul>
 					<li>
-						<a href="{{ url('/login') }}">{{config('constants.login')}}</a>
+						<a href="{{ url('/login') }}">{{Lang::get('constants.login')}}</a>
 					</li>
 					<li>
-						<a href="{{ url('/account') }}">{{config('constants.account')}}</a>
+						<a href="{{ url('/account') }}">{{Lang::get('constants.account')}}</a>
 					</li>
 				</ul>
 			</nav>
@@ -100,20 +107,11 @@
 		<div class="footer_column">
 		<nav>
 			<ul>
-				<li>{{config('constants.language')}}</li>
+				<li>{{Lang::get('constants.language')}}</li>
 
-
-				{{Lang::get('constants.welcome')}}
 
 				<li><a href="{{ url("setlocale/en") }}">ENG</a></li>
-
 				<li><a href="{{ url("setlocale/ru") }}">RU</a></li>
-
-
-
-
-				<a href="<?= route('setlocale', ['lang' => 'en']) ?>">English</a>
-				<a href="<?= route('setlocale', ['lang' => 'ru']) ?>">Русский</a>
 
 			</ul>
 		</nav>
@@ -124,7 +122,7 @@
 			<nav>
 				<ul>
 					<li>
-						<a href="{{ url('/contacts') }}" >{{config('constants.contacts')}}</a>
+						<a href="{{ url('/contacts') }}" >{{Lang::get('constants.contacts')}}</a>
 					</li>
 
 					<li>

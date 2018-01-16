@@ -9,6 +9,11 @@ use Wardrobe\Models\Wardrobe_Item;
 class WardrobeController extends Controller
 {
     public  function index(){
+        //язык
+        $conf_locale = Config::get('app.locale');
+        $locale = Cookie::get('Lang', $conf_locale);
+        App::setLocale($locale);
+
         return view('wardrobe');
     }
 
