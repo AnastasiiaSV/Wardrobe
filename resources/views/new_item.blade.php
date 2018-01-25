@@ -5,12 +5,18 @@
     <div class="no_overflow_page">
 
         <div class="login_form">
-            {!! Form::open(array('action' => ['ItemController@createItem'],'files'=>'true'));!!}
+            {!! Form::open(array('id' => 'newfile_form',
+                                            'method' => 'post',
+                                            'files'=>'true',
+                                            'onsubmit' => 'return new_item_adding_validation_func(this)',
+                                            'action' => ['ItemController@createItem'])); !!}
+
             {!! Form::hidden('creator_id', $vars[1]); !!}
             {!! Form::hidden('wardrobe_id', $vars[0]->id); !!}
 
             <div class="field-wrap">
-                {!! Form::text('name', Lang::get('constants.new_element_name')); !!}
+                {!! Form::text('name', Lang::get('constants.new_element_name'), ['id' => 'name']); !!}
+                <span id='nameValidation'></span>
             </div>
 
             <div class="field-wrap">
@@ -43,7 +49,7 @@
 
                 {!! Form::select('type_id', $types_arr); !!}
 
-                {!! Form::label('label_type2', '('.Lang::get('constants.choose_for_given').')');!!}
+                {!! Form::label('label_type2', '('.Lang::get('constants.select_for_chosen').')');!!}
             </div>
 
             <div class="field-wrap">
@@ -65,7 +71,8 @@
 
 
             <div class="field-wrap">
-                {!! Form::file('file',['class' => 'form-control'])!!}
+                {!! Form::file('file',['class' => 'form-control', 'accept'=>'.jpg, .jpeg, .png', 'id' => 'file_input'])!!}
+                <span id='fileInputValidation'></span>
             </div>
 
             {!! Form::submit(Lang::get('constants.create'), array('class'=>'field-wrap button button-block')) ; !!}
@@ -75,5 +82,7 @@
 
         </div>
     </div>
+
+    <script src="{{ asset('js/validation.js') }}"></script>
 
 @stop

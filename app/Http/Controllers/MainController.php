@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cookie;
 
 use Wardrobe\Models\Item;
+use Wardrobe\Models\User;
 use Wardrobe\Models\Season;
 use Wardrobe\Models\Category;
 use Wardrobe\Models\Wardrobe;
@@ -86,10 +87,21 @@ class MainController extends Controller
         $countries_arr = Country:: pluck('name', 'id')->all();
         return $countries_arr ;
     }
+    public static function getCountries(){
+        $countries_arr = Country::all();
+        return $countries_arr ;
+    }
 
     public static function getCitiesOfCountryList($country_id){
         // $types_arr = Type::all();
         $cities_arr = City::where('country_id',$country_id)->pluck('name','id');
+        return $cities_arr ;
+    }
+
+    public static function getCitiesOfCountry($country_id){
+
+        // $types_arr = Type::all();
+        $cities_arr = City::where('country_id',$country_id)->get();
         return $cities_arr ;
     }
 
@@ -112,6 +124,9 @@ class MainController extends Controller
     public static function getOneElementByIdAndName($table_name, $element_id){
         if($table_name=="Item"){
             $element = Item::find($element_id);
+        }
+        if($table_name=="User"){
+            $element = User::find($element_id);
         }
         else if($table_name=="Outfit"){
             $element = Outfit::find($element_id);

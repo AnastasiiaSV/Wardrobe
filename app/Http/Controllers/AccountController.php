@@ -58,4 +58,83 @@ class AccountController extends Controller
         // var_dump($found_item);
         return $found_item;
     }
+
+
+    public function editAccountInfo(Request $request)
+    {
+        $email = $request->input('email');
+        $old_psw = $request->input('old_password');
+        $new_psw = $request->input('new_password');
+        $name = $request->input('name');
+        $surname = $request->input('surname');
+        $phone = $request->input('phone');
+        $birth = $request->input('birth');
+        $country_id = $request->input('country_id');
+        $city_id = $request->input('city_id');
+
+        //if user exists
+        $user = User::where('email', $email)->first();
+        if (isset($user)) {
+            $user_id = $user->id;
+
+            if(isset($old_psw) && isset($new_psw)){
+                if($old_psw == $user->password){
+                    $user = User::where('id', $user_id)
+                        ->update([
+                            'password' => $new_psw,
+                        ]);
+                }
+            }
+
+            if(isset($name)){
+                $user = User::where('id', $user_id)
+                    ->update([
+                        'name' => $name
+                    ]);
+            }
+            if(isset($surname)){
+                $user = User::where('id', $user_id)
+                    ->update([
+                        'surname' => $surname,
+                    ]);
+            }
+            if(isset($phone)){
+                $user = User::where('id', $user_id)
+                    ->update([
+                        'phone' => $phone,
+                    ]);
+            }
+            if(isset($birth)){
+                $user = User::where('id', $user_id)
+                    ->update([
+                        'date_of_birth' => $birth,
+                    ]);
+            }
+            if(isset($country_id)){
+                $user = User::where('id', $user_id)
+                    ->update([
+                        'country_id' => $country_id,
+                    ]);
+            }
+            if(isset($city_id)){
+                $user = User::where('id', $user_id)
+                    ->update([
+                        'city_id' => $city_id,
+                    ]);
+            }
+
+
+            //язык
+            $conf_locale = Config::get('app.locale');
+            $locale = Cookie::get('Lang', $conf_locale);
+            App::setLocale($locale);
+
+            $user = User::find($user_id);
+            return view('account', ['user_id' => $user->id]);
+
+        } else {
+            return view('login');
+        }
+    }
+
 }

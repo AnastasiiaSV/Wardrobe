@@ -15,8 +15,6 @@
 	<link rel="stylesheet" href="{{ URL::asset('css/style2.css') }}" >
 	<link rel="stylesheet" type="text/css" href="{!! URL::asset('css/items.css') !!}"  >
 
-	<script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">	</script>
-
 </head>
 
 <body>
@@ -155,10 +153,6 @@
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="{{ asset('js/item.js') }}"></script>
-	<script src="{{ asset('js/form.js') }}"></script>
-
 
 </body>
 

@@ -43,8 +43,8 @@ class LoginController extends Controller
         }
 
 
-        $email = $request->input('email');
-        $psw = $request->input('password');
+        $email = trim($request->input('email'));
+        $psw = trim($request->input('password'));
 
         //if user exists
         $user = User::where('email', $email)
@@ -107,8 +107,8 @@ class LoginController extends Controller
             $this->validate($request, $rules);
         }
 
-        $email = $request->input('email');
-        $psw = $request->input('password');
+        $email = trim($request->input('email'));
+        $psw = trim($request->input('password'));
         $name = $request->input('name');
         $surname = $request->input('surname');
         $phone = $request->input('phone');

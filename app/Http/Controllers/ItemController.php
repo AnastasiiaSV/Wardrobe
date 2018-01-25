@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Wardrobe\Models\Category;
 use Wardrobe\Models\Item;
 use Wardrobe\Models\Wardrobe_Item;
+use Wardrobe\Models\Item_Outfit;
 use App;
 use Config;
 use Illuminate\Support\Facades\Cookie;
@@ -21,6 +22,12 @@ class ItemController extends Controller
 
     public function createItem(Request $request)
     {
+
+        /*
+         * todo
+         * //валидация вормы
+         */
+
         $name = $request->input('name');
         $category_id = $request->input('category_id');
         $type_id = $request->input('type_id');
@@ -46,6 +53,17 @@ class ItemController extends Controller
         $file_name = time().'_'.$file->getClientOriginalName();
         $file->move($path, $file_name);
         $wardrobe_id = $request->input('wardrobe_id');
+
+        if(isset($name) &&
+            isset($category_id) &&
+            isset($type_id) &&
+            isset($season_id) &&
+            isset($place_id) &&
+            isset($file) &&
+            isset($creator_id) &&
+            isset($wardrobe_id)){
+            
+        }
 
             $item = Item::create([
                 'name' => $name,
@@ -94,6 +112,15 @@ class ItemController extends Controller
     {
         $item_id = $request->input('item_id');
         $wardrobe_id = $request->input('wardrobe_id');
+
+        //$outfits =
+
+
+       // foreach ($items_arr as $item_in_outfit) {
+            $item_exists = Item_Outfit::where([
+                'item_id' => $item_id
+            ])->delete();
+      //  }
 
         $item = Item::where('id', $item_id)->delete();
 

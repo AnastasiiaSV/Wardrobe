@@ -93,4 +93,7 @@
         </div>
 
     </div>
+
+    <script src="{{ asset('js/validation.js') }}"></script>
+
 @stop

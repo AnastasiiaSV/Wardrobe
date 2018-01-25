@@ -2,7 +2,7 @@
 @section('title', 'WARDROBE')
 @section('content')
 
-    <div class="page">
+    <div class="no_overflow_page">
 
         <?php
         $outfit = $vars[0];
@@ -22,12 +22,14 @@
 
 
             @foreach (\Wardrobe\Http\Controllers\MainController::getCategories() as $category)
+                <div class="items_container_choose">
                 @foreach (\Wardrobe\Http\Controllers\WardrobeController::wardrobeCategoryItems($wardrobe->id, $category->id) as $item)
-                    <div class="item_container_main_half">
+                    <div class="item_container_choose">
                         {!!  Form::checkbox("check-items[]", "$item->id"); !!}
                         <img src="{{ URL::asset("$item->path") }}">
                     </div>
                 @endforeach
+                </div>
             @endforeach
             {!! Form::close() !!}
         </div>
@@ -47,16 +49,17 @@
 
             <p>{{Lang::get('constants.items_in_outfit')}}: </p>
 
+            <div class="items_container_choose">
                 @foreach (\Wardrobe\Http\Controllers\AccountController::getOutfitItems($outfit->id) as $item)
                     <?php
                     $item = \Wardrobe\Http\Controllers\MainController::getOneElementByIdAndName("Item", $item->item_id);
                     ?>
-                    <div class="item_container_main_half">
+                    <div class="item_container_choose">
                         {!!  Form::checkbox("check-items[]", "$item->id"); !!}
                         <img src="{{ URL::asset("$item->path") }}">
                     </div>
                 @endforeach
-
+            </div>
             {!! Form::close() !!}
         </div>
 
@@ -90,4 +93,7 @@
 
 
     </div>
+
+    <script src="{{ asset('js/validation.js') }}"></script>
+
 @stop

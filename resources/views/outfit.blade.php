@@ -21,7 +21,7 @@
             {{Lang::get('constants.wardrobe')}}: {{$wardrobe->name}}
 
             <br>
-            <a href="{{ url("edit_outfit/{$outfit->id}") }}">{{Lang::get('constants.press_to_edit_item')}}</a>
+            <a href="{{ url("edit_outfit/{$outfit->id}") }}">{{Lang::get('constants.press_to_edit_outfit')}}</a>
 
         </p>
 

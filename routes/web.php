@@ -34,7 +34,8 @@ Route::any('/create_wardrobe', 'WardrobeController@createWardrobe');
 Route::post('/new_item', 'WardrobeController@gotoNewItemPage');
 Route::post('/outfit', 'WardrobeController@gotoNewOutfitPage');
 
-Route::any('/new_item/ok', 'ItemController@createItem');
+Route::post('/new_item/ok', 'ItemController@createItem');
+
 Route::any('/item', 'ItemController@editItem');
 Route::any('/item_deleted', 'ItemController@deleteItem');
 
@@ -45,6 +46,7 @@ Route::any('/outfit/items_removed', 'OutfitController@deleteItemsFromOutfit');
 Route::any('/outfit/items_added', 'OutfitController@addItemsToOutfit');
 
 Route::any('/account', 'AccountController@index');
+Route::any('/account/info', 'AccountController@editAccountInfo');
 
 Route::post('/account/wardrobes', 'AccountController@showWardrobes');
 Route::post('/wardrobe', 'AccountController@gotoWardrobe');
