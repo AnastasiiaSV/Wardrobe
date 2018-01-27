@@ -38,7 +38,6 @@ class WardrobeController extends Controller
     }
 
     public  function gotoNewWardrobePage(Request $request){
-
         $creator_id = $request->input('creator_id');
         return view('new_wardrobe', ['vars' =>  [$creator_id]]);
     }
@@ -66,12 +65,16 @@ class WardrobeController extends Controller
         $name = $request->input('name');
         $creator_id = $request->input('creator_id');
 
-        $wardrobe = Wardrobe::create([
-            'name' => $name,
-            'creator_id' =>$creator_id,
-        ]);
+        if(isset($name) && isset($creator_id)){
+            $wardrobe = Wardrobe::create([
+                'name' => $name,
+                'creator_id' =>$creator_id,
+            ]);
 
-        return redirect("/wardrobe/$wardrobe->id");
-       // return view('wardrobe',['wardrobe' => $wardrobe]);
+            return redirect("/wardrobe/$wardrobe->id");
+            // return view('wardrobe',['wardrobe' => $wardrobe]);
+        }else{
+            echo "Missing parameter!";
+        }
     }
 }

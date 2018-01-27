@@ -52,7 +52,7 @@
                     }
 
                     ?>
-                    {!! Form::select('type_id', $types_arr); !!}
+                    {!! Form::select('type_id', $types_arr, $item->type_id); !!}
 
                     {!! Form::label('label_type2', '('.Lang::get('constants.choose_for_given').')');!!}
                 </div>
@@ -77,7 +77,8 @@
              {!! Form::submit(Lang::get('constants.edit'), array('class'=>'field-wrap button button-block')) ; !!}
              {!! Form::close() !!}
 
-                <hr>
+
+                <hr> <br>
         </div>
 
 

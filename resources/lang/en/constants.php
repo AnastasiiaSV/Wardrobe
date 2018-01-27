@@ -59,6 +59,7 @@ return [
     'season' => 'Season',
     'storage' => 'Storage place',
     'select_for_chosen' => 'select for chosen',
+    'choose_for_given' => 'choose for given',
 
     'not_alive_name' => 'Name', //название (не имя)
 

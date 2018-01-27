@@ -116,13 +116,19 @@ class AccountController extends Controller
                         'country_id' => $country_id,
                     ]);
             }
-            if(isset($city_id)){
+
+            //check city to country matching
+            $isRightType = false;
+            if(isset($country_id) && isset($city_id)){
+                $city = City::find($city_id);
+                if($city->country_id == $country_id) $isRightType = true;
+            }
+            if(isset($city_id) && $isRightType){
                 $user = User::where('id', $user_id)
                     ->update([
                         'city_id' => $city_id,
                     ]);
             }
-
 
             //язык
             $conf_locale = Config::get('app.locale');

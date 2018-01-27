@@ -26,7 +26,7 @@
 
                     <div class="field-wrap" >
                         {!! Form::label('email', Lang::get('constants.email'), array('class'=>'field-wrap')) !!}
-                        {!!Form::text('email', 'ivan@gmail.com', ['id' => 'signup_email']) !!}
+                        {!!Form::text('email', 'example@gmail.com', ['id' => 'signup_email']) !!}
                     <span id='signupEmailValidation'></span>
                     </div>
 

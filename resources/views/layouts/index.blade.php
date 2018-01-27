@@ -107,9 +107,8 @@
 			<ul>
 				<li>{{Lang::get('constants.language')}}</li>
 
-
 				<li><a href="{{ url("setlocale/en") }}">ENG</a></li>
-				<li><a href="{{ url("setlocale/ru") }}">RU</a></li>
+				<li><a href="{{ url("setlocale/ru") }}">РУС</a></li>
 
 			</ul>
 		</nav>

@@ -241,7 +241,10 @@
               @endforeach
 
           <!-- new wardrobe creating -->
-              {!! Form::open(['action' => ['WardrobeController@gotoNewWardrobePage']]);!!}
+              {!! Form::open(array(
+                   'method' => 'post',
+                   'action' => ['WardrobeController@gotoNewWardrobePage'])); !!}
+
               {!! Form::hidden('creator_id', $user_id); !!}
               {!! Form::submit(Lang::get('constants.new_wardrobe'),array('class'=>'field-wrap button button-block_account')) ; !!}
               {!! Form::close() !!}

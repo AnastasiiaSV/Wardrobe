@@ -36,7 +36,10 @@ class OutfitController extends Controller
             $this->validate($request, $rules);
         }
 
-        //Adding to oufits table
+        if(isset($name) && isset($declaration)
+            && isset($wardrobe_id) && isset($creator_id)){
+
+            //Adding to oufits table
             $outfit = Outfit::create([
                 'name' => $name,
                 'declaration' => $declaration,
@@ -44,32 +47,38 @@ class OutfitController extends Controller
                 'wardrobe_id' => $wardrobe_id
             ]);
 
-        $outfit_id = $outfit->id;
-        //var_dump($outfit);
-        //adding items and outfits matching in db
-        //i.e. add items to current outfit
-        $items_arr = $request->input('check-items');
+            $outfit_id = $outfit->id;
+            //var_dump($outfit);
 
-        foreach ($items_arr as $item_in_outfit) {
-            //var_dump($item_in_outfit);
+            //adding items and outfits matching in db
+            //i.e. add items to current outfit
+            $items_arr = $request->input('check-items');
+                if(isset($items_arr)){
+                    foreach ($items_arr as $item_in_outfit) {
+                        //var_dump($item_in_outfit);
 
-            $item_outfit = Item_Outfit::create([
-                'item_id' => $item_in_outfit,
-                'outfit_id' => $outfit_id
-            ]);
+                        $item_outfit = Item_Outfit::create([
+                            'item_id' => $item_in_outfit,
+                            'outfit_id' => $outfit_id
+                        ]);
+                    }
+                }
+
+            return redirect("/outfit/$outfit->id");
+            // return view('outfit', ['vars' =>  [$outfit]]);
+
+        }else{
+            echo "Missing value";
         }
 
-        return redirect("/outfit/$outfit->id");
-       // return view('outfit', ['vars' =>  [$outfit]]);
-    }
-
+    } //end createOutfit()
 
 
     public function editOutfitDeclaration(Request $request)
     {
+        $outfit_id = $request->input('outfit_id');
         $name = $request->input('name');
         $declaration = $request->input('declaration');
-        $outfit_id = $request->input('outfit_id');
 
         //валидация вормы
         if ($request->isMethod('post')) {
@@ -79,15 +88,28 @@ class OutfitController extends Controller
             $this->validate($request, $rules);
         }
 
-        //Adding to oufits table
-        $outfit = Outfit::where('id', $outfit_id)
-            ->update(['name' => $name,
-                'declaration' =>$declaration,
-            ]);
+        if(isset($outfit_id)){
 
-        $outfit = Outfit::find($outfit_id);
+            if(isset($name)){
+                $outfit = Outfit::where('id', $outfit_id)
+                    ->update(['name' => $name
+                    ]);
+            }
+            if(isset($declaration)){
+                $outfit = Outfit::where('id', $outfit_id)
+                    ->update(['declaration' =>$declaration
+                    ]);
+            }
 
-        return view('outfit', ['vars' =>  [$outfit]]);
+            $outfit = Outfit::find($outfit_id);
+
+            return redirect("/outfit/$outfit->id");
+            //return view('outfit', ['vars' =>  [$outfit]]);
+
+        }else{
+            echo "Missing outfit";
+        } //end if(isset($outfit_id))
+
      }
 
 
@@ -97,42 +119,59 @@ class OutfitController extends Controller
         $outfit_id = $request->input('outfit_id');
         $items_arr = $request->input('check-items');
 
-        foreach ($items_arr as $item_in_outfit) {
-            $item_exists = Item_Outfit::where([
-                'item_id' => $item_in_outfit,
-                'outfit_id' => $outfit_id
-            ])->delete();
+        if(isset($outfit_id)){
+            if(isset($items_arr)){
+                foreach ($items_arr as $item_in_outfit) {
+                    $item_exists = Item_Outfit::where([
+                        'item_id' => $item_in_outfit,
+                        'outfit_id' => $outfit_id
+                    ])->delete();
+                }
+            }
+
+            $outfit = Outfit::find($outfit_id);
+            return redirect("/outfit/$outfit->id");
+           // return view('outfit', ['vars' =>  [$outfit]]);
+
+        }else{
+            echo "Missing outfit";
         }
 
-        $outfit = Outfit::find($outfit_id);
-        return view('outfit', ['vars' =>  [$outfit]]);
     }
 
     public function addItemsToOutfit(Request $request)
     {
         $outfit_id = $request->input('outfit_id');
-
         $items_arr = $request->input('check-items');
 
-        foreach ($items_arr as $item_in_outfit) {
-            $item_exists = Item_Outfit::where([
-                'item_id' => $item_in_outfit,
-                'outfit_id' => $outfit_id
-            ]) ->get();
-            //var_dump($item_exists);
+        if(isset($outfit_id)){
+            if(isset($items_arr)){
 
-            if(count($item_exists)==0)
-            {
-                $item_outfit = Item_Outfit::create([
-                    'item_id' => $item_in_outfit,
-                    'outfit_id' => $outfit_id
-                ]);
+                foreach ($items_arr as $item_in_outfit) {
+                    $item_exists = Item_Outfit::where([
+                        'item_id' => $item_in_outfit,
+                        'outfit_id' => $outfit_id
+                    ]) ->get();
+                    //var_dump($item_exists);
+
+                    if(count($item_exists)==0)
+                    {
+                        $item_outfit = Item_Outfit::create([
+                            'item_id' => $item_in_outfit,
+                            'outfit_id' => $outfit_id
+                        ]);
+                    }
+                }
             }
-        }
 
-        $outfit = Outfit::find($outfit_id);
-        return view('outfit', ['vars' =>  [$outfit]]);
-    }
+            $outfit = Outfit::find($outfit_id);
+            return redirect("/outfit/$outfit->id");
+            //return view('outfit', ['vars' =>  [$outfit]]);
+
+        }else{
+            echo "Missing outfit";
+        }
+     }
 
 
     public function deleteOutfit(Request $request)

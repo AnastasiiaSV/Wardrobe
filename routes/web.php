@@ -27,29 +27,29 @@ Route::any('/contacts', function () {
 
 Route::any('/', 'MainController@index');
 
-Route::post('/posts', 'MainController@gotoPostsPage');
+Route::any('/posts', 'MainController@gotoPostsPage');
 
 Route::any('/new_wardrobe', 'WardrobeController@gotoNewWardrobePage');
-Route::any('/create_wardrobe', 'WardrobeController@createWardrobe');
-Route::post('/new_item', 'WardrobeController@gotoNewItemPage');
-Route::post('/outfit', 'WardrobeController@gotoNewOutfitPage');
+Route::post('/create_wardrobe', 'WardrobeController@createWardrobe');
+Route::any('/new_item', 'WardrobeController@gotoNewItemPage');
+Route::any('/outfit', 'WardrobeController@gotoNewOutfitPage');
 
 Route::post('/new_item/ok', 'ItemController@createItem');
 
-Route::any('/item', 'ItemController@editItem');
-Route::any('/item_deleted', 'ItemController@deleteItem');
+Route::post('/item', 'ItemController@editItem');
+Route::post('/item_deleted', 'ItemController@deleteItem');
 
-Route::any('/new_outfit', 'OutfitController@createOutfit');
-Route::any('/outfit_deleted', 'OutfitController@deleteOutfit');
-Route::any('/outfit/changed', 'OutfitController@editOutfitDeclaration');
-Route::any('/outfit/items_removed', 'OutfitController@deleteItemsFromOutfit');
-Route::any('/outfit/items_added', 'OutfitController@addItemsToOutfit');
+Route::post('/new_outfit', 'OutfitController@createOutfit');
+Route::post('/outfit_deleted', 'OutfitController@deleteOutfit');
+Route::post('/outfit/changed', 'OutfitController@editOutfitDeclaration');
+Route::post('/outfit/items_removed', 'OutfitController@deleteItemsFromOutfit');
+Route::post('/outfit/items_added', 'OutfitController@addItemsToOutfit');
 
 Route::any('/account', 'AccountController@index');
-Route::any('/account/info', 'AccountController@editAccountInfo');
+Route::post('/account/info', 'AccountController@editAccountInfo');
 
-Route::post('/account/wardrobes', 'AccountController@showWardrobes');
-Route::post('/wardrobe', 'AccountController@gotoWardrobe');
+Route::any('/account/wardrobes', 'AccountController@showWardrobes');
+Route::any('/wardrobe', 'AccountController@gotoWardrobe');
 
 //go to particular wardrobe page
 Route::get('/wardrobe/{id}', function ($id) {
@@ -112,8 +112,23 @@ Route::get('/edit_item/{id}', function ($id) {
 
 // route to show the login form
 Route::any('/login',  'LoginController@gotoLoginPage');
+
 Route::any('/login/account',  'LoginController@doLogin');
-Route::any('/login/account/login',  'LoginController@doLogout');
+
+Route::any('/account/{id}', function ($id) {
+    //язык
+    $conf_locale = Config::get('app.locale');
+    $locale = Cookie::get('Lang', $conf_locale);
+    App::setLocale($locale);
+
+    return response(view('account', ['user_id' => $id]))
+        ->cookie('UserId', $id, 60);
+});
+
+
+
+
+Route::post('/login/account/login',  'LoginController@doLogout');
 
 Route::any('/signup',  'LoginController@gotoSignUpPage');
 Route::any('/new_account', 'LoginController@doSignUp');
