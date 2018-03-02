@@ -47,6 +47,8 @@ return [
     'new_item' => 'New item',
     'create_outfit' => 'Create outfit',
 
+    'crop' => 'Crop and go to next step',
+
     'new_wardrobe_name' => 'Name of new wardrobe',
     'create_wardrobe' => 'Create wardrobe',
 

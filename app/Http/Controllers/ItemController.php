@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Wardrobe\Models\Category;
 use Wardrobe\Models\Type;
 use Wardrobe\Models\Item;
+use Wardrobe\Models\Wardrobe;
 use Wardrobe\Models\Wardrobe_Item;
 use Wardrobe\Models\Item_Outfit;
 use App;
@@ -21,6 +22,17 @@ class ItemController extends Controller
         return view('item');
     }
 
+    public  function gotoNewItemPage(Request $request){
+
+        $img = $request->input('img');
+
+        $wardrobe_id = $request->input('wardrobe_id');
+        $found_wardrobe = Wardrobe::find($wardrobe_id);
+        $creator_id = $request->input('creator_id');
+
+        return view('new_item', ['vars' =>  [$found_wardrobe, $creator_id, $img]]);
+    }
+
     public function createItem(Request $request)
     {
 
@@ -34,32 +46,43 @@ class ItemController extends Controller
         $type_id = $request->input('type_id');
         $season_id = $request->input('season_id');
         $place_id = $request->input('place_id');
-        $file = $request->file('file');
+        $img = $request->input('img');
 
         $wardrobe_id = $request->input('wardrobe_id');
 
         $category = Category::find($category_id);
-        $path = "content/$category->name";
+        $path = "content/$category->name/";
 
         $creator_id = $request->input('creator_id');
-       // $creator_id = 1;
+
 
         //валидация вормы
         if ($request->isMethod('post')) {
             $rules = [
-                'file' => 'required',
                 'name' => 'required'
             ];
             $this->validate($request, $rules);
         }
 
-        $file_name = time().'_'.$file->getClientOriginalName();
-        $file->move($path, $file_name);
+       // $file_name = time().'_'.$file->getClientOriginalName();
+        //$file->move($path, $file_name);
+
+
+        $img = str_replace('data:image/png;base64,', '', $img);
+        $img = str_replace(' ', '+', $img);
+        $data = base64_decode($img);
+        $file = $path . uniqid() . '.png';
+
+        $success = file_put_contents($file, $data); //Записать строку в файл
+
+        print $success ? $file : 'Unable to save the file.';
+
+        ///
 
         //проверка расширения файла.Должно быть изображение
         $isRightFile = false;
         if(isset($file)){
-            $arr =  (explode(".", $file_name));
+            $arr =  (explode(".", $file));
             $exten = end($arr);
             if($exten == "jpg" || $exten =="jpeg" || $exten == "png") $isRightFile = true;
         }
@@ -82,7 +105,7 @@ class ItemController extends Controller
                 'type_id' => $type_id,
                 'season_id' => $season_id,
                 'place_id' => $place_id,
-                'path' => "$path/$file_name",
+                'path' => "$file",
                 'creator_id' => $creator_id,
                 'wardrobe_id' => $wardrobe_id,
             ]);

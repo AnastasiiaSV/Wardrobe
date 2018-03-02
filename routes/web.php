@@ -31,11 +31,11 @@ Route::any('/posts', 'MainController@gotoPostsPage');
 
 Route::any('/new_wardrobe', 'WardrobeController@gotoNewWardrobePage');
 Route::post('/create_wardrobe', 'WardrobeController@createWardrobe');
-Route::any('/new_item', 'WardrobeController@gotoNewItemPage');
+Route::any('/new_item_img', 'WardrobeController@gotoCropItemPage');
 Route::any('/outfit', 'WardrobeController@gotoNewOutfitPage');
 
 Route::post('/new_item/ok', 'ItemController@createItem');
-
+Route::any('/new_item', 'ItemController@gotoNewItemPage');
 Route::post('/item', 'ItemController@editItem');
 Route::post('/item_deleted', 'ItemController@deleteItem');
 

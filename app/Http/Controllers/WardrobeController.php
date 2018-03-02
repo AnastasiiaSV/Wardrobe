@@ -17,14 +17,12 @@ class WardrobeController extends Controller
         return view('wardrobe');
     }
 
-    public  function gotoNewItemPage(Request $request){
+    public  function gotoCropItemPage(Request $request){
         //получить и найти гардероб для использования на странице создания образа
         $wardrobe_id = $request->input('wardrobe_id');
-        $found_wardrobe = Wardrobe::find($wardrobe_id);
-
         $creator_id = $request->input('creator_id');
 
-        return view('new_item', ['vars' =>  [$found_wardrobe, $creator_id]]);
+        return view('crop_img', ['vars' =>  [$wardrobe_id, $creator_id]]);
     }
 
     public  function gotoNewOutfitPage(Request $request){

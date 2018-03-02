@@ -16,7 +16,7 @@
         {!! Form::close() !!}
 
 
-        {!! Form::open(['action' => ['WardrobeController@gotoNewItemPage']]);!!}
+        {!! Form::open(['action' => ['WardrobeController@gotoCropItemPage']]);!!}
             {!! Form::hidden('wardrobe_id', $wardrobe->id); !!}
             {!! Form::hidden('creator_id', $creator_id); !!}
             {!! Form::submit(Lang::get('constants.new_item'), array('class'=>'field-wrap button button-block')) ; !!}
